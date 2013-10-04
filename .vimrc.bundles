@@ -1,0 +1,52 @@
+"--------------------------------
+"       Vundle 
+"--------------------------------
+set nocompatible               " be iMproved
+filetype off                   " required!
+ 
+" vundle {
+" set rtp+=~/.vim/bundle/vundle/
+" 如果在windows下使用的话，设置为 
+    set rtp+=$HOME/bundle/vundle/
+    call vundle#rc()
+" }
+"
+
+" original repos on github
+" github上的用户写的插件，使用这种用户名+repo名称的方式
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'Yggdroot/indentLine'
+Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tomasr/molokai'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'SirVer/ultisnips'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'Raimondi/delimitMate'
+Bundle 'godlygeek/tabular'
+Bundle 'terryma/vim-expand-region'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'scrooloose/syntastic'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'hdima/python-syntax'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'plasticboy/vim-markdown'
+Bundle "pangloss/vim-javascript"
+Bundle 'nono/jquery.vim'
+Bundle 'Glench/Vim-Jinja2-Syntax'
+Bundle 'thiderman/nginx-vim-syntax'
+Bundle 'vim-scripts/TaskList.vim'
+Bundle 'sjl/gundo.vim'
+
+filetype plugin indent on     " vbundle required!
