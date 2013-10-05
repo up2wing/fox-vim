@@ -1,6 +1,5 @@
 fox-vim
-=======
-"=============================================
+=====================================
 " Author: WangYi
 " Version: 1
 " Email: up2wing@gmail.com
@@ -10,11 +9,35 @@ fox-vim
 
 fox-vim, using vundle to manage plugins
 
-1. 安装插件
+一. 安装插件
     使用了vundle管理插件，首先要安装git和curl，方法见参考1。Windows下直接执行install.bat。 
 
-2. 插件的使用
-    1）nerdtree
+二. 插件的使用
+    1、tags
+        将gentags.bat和gentags.sh两个文件拷贝到vim.exe所在目录，然后在vim中执行:!gentags.bat，即可生成filenametags
+        将ctags58目录中的exe文件拷贝到vim.exe所在目录即可。
+        Ctrl+F12即可生成tags
+        命令：
+            :tag {ident}            "跳转到指定的标签
+            :tags                   "显示标签栈
+            CTRL-]                  "跳转到当前光标下的标签
+            CTRL-T                  "跳到标签栈中较早的标签 
+    2、LookupFiles
+        首先安装genutils，然后安装lookupfiles插件。
+        按”<F5>“或输入”:LookupFile“在当前窗口上方打开一个lookupfile小窗口。
+    3、cscope
+        通过:cs add cscope.out添加数据库，使用参见vimrc文件。
+    4、Taglist
+        F8打开TagList窗口.
+    5、winmanager
+        ,wm  打开winmanager
+    6、OmniCppComplete
+        自动补全，在需要的地方按下<Ctrl+x>, <Ctrl+o>
+    7、NERD_commenter
+        自动注释：,cm是添加注释；,cu是取消注释
+    8、sessionman
+        将session保存、恢复
+    9、 nerdtree
         ,n  打开 关闭树形目录结构
         在nerdtree窗口常用操作：(小写当前，大写root)
         x.......Close the current nodes parent收起当前目录树
@@ -28,16 +51,25 @@ fox-vim, using vundle to manage plugins
         i.......Open selected file in a split window上下分屏
         s.......Open selected file in a new vsplit左右分屏
 
-
-
-
-
-
-
+三、vim使用
+    1、BufExplorer
+        ,be 正常打开；
+        ,bs 水平打开；
+        ,bv 垂直打开
+    2、会话
+        1) 退出时:mksession! c:\Users\Administrator\project_name.vim，然后在用户目录中建立project_namex.vim，输入：
+          set path+=project_path
+          :cs add project_path\cscope.out
+        2) 打开时，cmd输入gvim &，在打开的vim中输入:source project_name.vim。
+    3、字体
+        采用Bitstream Vera Sans Mono，SourceInsight、VS、SSH都可以采用这种字体。
+        双击VeraMono.ttf，直接安装即可。
 
 
 
 参考：
-    1、Vundle for Windows, https://github.com/gmarik/vundle/wiki/Vundle-for-Windows
-    2、wklken/k-vim, https://github.com/wklken/k-vim
-    
+    1. Vundle for Windows, https://github.com/gmarik/vundle/wiki/Vundle-for-Windows
+    2. wklken/k-vim, https://github.com/wklken/k-vim
+    3. 易水博客: http://easwy.com/blog/archives/advanced-vim-skills-catalog/
+    4. Vimer的程序世界：http://www.vimer.cn/
+

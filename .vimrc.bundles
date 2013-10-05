@@ -4,13 +4,16 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
  
-" vundle {
-" set rtp+=~/.vim/bundle/vundle/
-" 如果在windows下使用的话，设置为 
-    set rtp+=$HOME/bundle/vundle/
-    call vundle#rc()
-" }
-"
+" 此处规定Vundle的路径
+" if Linux
+"   set rtp+=~/.vim/bundle/vundle/
+"   call vundle#rc('$VIM/vimfiles/bundle/')
+" if Windows
+    set rtp+=$VIM/vimfiles/bundle/vundle/
+    call vundle#rc('$VIM/vimfiles/bundle/')
+
+Bundle 'gmarik/vundle'
+filetype plugin indent on
 
 " original repos on github
 " github上的用户写的插件，使用这种用户名+repo名称的方式
@@ -48,5 +51,8 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 Bundle 'thiderman/nginx-vim-syntax'
 Bundle 'vim-scripts/TaskList.vim'
 Bundle 'sjl/gundo.vim'
+Bundle 'vim-scripts/Lucius'
+" vimscripts的repo使用下面的格式，直接是插件名称
+"Bundle 'taglist.vim'
 
 filetype plugin indent on     " vbundle required!
