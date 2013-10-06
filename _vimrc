@@ -1,3 +1,5 @@
+" Modeline and Notes {
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "=============================================
 " Author: WangYi
 " Version: 1
@@ -5,230 +7,247 @@
 " ReadMe: README.md
 " Sections:
 
-"-------------------------------
-"     Common Setting
-"-------------------------------
-"ÓÃ¿Õ¸ñ¼üÀ´¿ª¹ØÕÛµş
-nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-"Á½´Îo»»ĞĞ¶ø²»ÓÃ½øÈë±à¼­Ä£Ê½
-noremap go o<esc>
-noremap gO O<esc>
+" }
 
-" history´æ´¢³¤¶È¡£
-set history=2000
-
-filetype on                "¼ì²âÎÄ¼şÀàĞÍ
-filetype indent on         "Õë¶Ô²»Í¬µÄÎÄ¼şÀàĞÍ²ÉÓÃ²»Í¬µÄËõ½ø¸ñÊ½
-filetype plugin on         "ÔÊĞí²å¼ş
-filetype plugin indent on  "Æô¶¯×Ô¶¯²¹È«
-
-set shiftwidth=4   "×Ô¶¯Ëõ½øµÄ¿í¶È
-syntax on          "´ò¿ª¸ßÁÁ
-set hlsearch       "¸ßÁÁÏÔÊ¾½á¹û
-set incsearch      "ÔÚÊäÈëÒªËÑË÷µÄÎÄ×ÖÊ±£¬vim»áÊµÊ±Æ¥Åä
-set ignorecase     " ËÑË÷Ê±ºöÂÔ´óĞ¡Ğ´
-set showmatch      " ÏÔÊ¾À¨ºÅÅä¶ÔÇé¿ö
-set mat=2          " How many tenths of a second to blink when matching brackets
-set number         " ÏÔÊ¾ĞĞºÅ
-set title          " change the terminal's title
-set novisualbell   " don't beep
-set noerrorbells   " don't beep
-set vb t_vb=       "È¥µô´íÎóÉùÒô
-
-let mapleader = ","     "Set mapleader
-
-set tabstop=4           " ÉèÖÃTab¼üµÄ¿í¶È        [µÈÍ¬µÄ¿Õ¸ñ¸öÊı]
-set shiftwidth=4        " number of spaces to use for autoindenting
-set softtabstop=4       " °´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô 4 ¸ö¿Õ¸ñ
-set smarttab            " insert tabs on the start of a line according to shiftwidth, not tabstop °´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô 4 ¸ö¿Õ¸ñ
-set expandtab      "ÓÃ¿Õ¸ñ´úÌætab
-
-set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-
-set foldenable          " ¿ªÊ¼ÕÛµş
-set foldmethod=indent   " ÉèÖÃÕÛµş·½Ê½(syntax\marker\expr)
-set foldcolumn=0        " ÉèÖÃÕÛµşÇøÓòµÄ¿í¶È
-setlocal foldlevel=1    " ÉèÖÃÕÛµş²ãÊıÎª
-set foldlevelstart=99   " ´ò¿ªÎÄ¼şÊÇÄ¬ÈÏ²»ÕÛµş´úÂë
-"set foldclose=all      " ÉèÖÃÎª×Ô¶¯¹Ø±ÕÕÛµş
-
-set smartindent          "Smart indent
-set autoindent           " always set autoindenting on
-" never add copyindent, case error   " copy the previous indentation on autoindenting
-
-set nobackup          "²»Éú³É~±¸·İÎÄ¼ş(gvimĞèÒªÍ¬Ê±ĞŞ¸Ävimrc_example.vim)
-set nocompatible      "¹Ø±Õvi¼æÈİÄ£Ê½£¬±ÜÃâÒı·¢ÎÊÌâ
-set autoread          " ÎÄ¼şĞŞ¸ÄÖ®ºó×Ô¶¯ÔØÈë¡£
-set nobackup          " È¡Ïû±¸·İ¡£ ÊÓÇé¿ö×Ô¼º¸Ä
-set noswapfile
-set cursorline              " Í»³öÏÔÊ¾µ±Ç°ĞĞ
-
-"create undo file
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
-
-set wildignore=*.swp,*.bak,*.pyc,*.class
-
-set ruler                 "ÏÔÊ¾µ±Ç°µÄĞĞºÅÁĞºÅ£º
-set showcmd               "ÔÚ×´Ì¬À¸ÏÔÊ¾ÕıÔÚÊäÈëµÄÃüÁî
-set showmode              " Show current mode
-
-set scrolloff=7          "j/k ÉÏÏÂ¹ö¶¯,Ê¼ÖÕÔÚÖĞ¼ä
-
-"set winwidth=79
-
-" ÃüÁîĞĞ£¨ÔÚ×´Ì¬ĞĞÏÂ£©µÄ¸ß¶È£¬Ä¬ÈÏÎª1£¬ÕâÀïÊÇ2
-set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
-" Always show the status line
-set laststatus=2
-
-
-set guifont=Bitstream_Vera_Sans_Mono:h9.5:cANSI      "×ÖÌåÉèÖÃÎªBitstream
-
-set guioptions-=m               "°ÑguiµÄ²Ëµ¥À¸È¥µô
-set guioptions-=T               "È¥µô¹¤¾ßÀ¸
-autocmd GUIEnter * simalt ~x    "Æô¶¯Ê±×î´ó»¯
-
-"ÏÂÃæµÄÉèÖÃ±ÜÃâvimÖĞÎÄ³öÏÖÂÒÂë
-set encoding=utf-8
-set fileencodings=utf-8,chinese,latin-1
-if has("win32")
-set fileencoding=chinese
-else
-set fileencoding=utf-8
-endif
-"½â¾ö²Ëµ¥ÂÒÂë
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-"½â¾öconsleÊä³öÂÒÂë
-language messages zh_CN.utf-8
-
-
-"-------------------------------
-"          Platform
-"-------------------------------
-if(has("win32") || has("win95") || has("win64") || has("win16"))
-    let g:iswindows=1
-else
-    let g:iswindows=0
-endif
-autocmd BufEnter * lcd %:p:h
-
-function! SwitchToBuf(filename)
-    "let fullfn = substitute(a:filename, "^\\~/", $HOME . "/", "")
-    " find in current tab
-    let bufwinnr = bufwinnr(a:filename)
-    if bufwinnr != -1
-        exec bufwinnr . "wincmd w"
-        return
-    else
-        " find in each tab
-        tabfirst
-        let tab = 1
-        while tab <= tabpagenr("$")
+" Platform {
+        "------------------------------- {
+        "          Platform
+        "-------------------------------
+        if(has("win32") || has("win95") || has("win64") || has("win16"))
+            let g:iswindows=1
+        else
+            let g:iswindows=0
+        endif
+        autocmd BufEnter * lcd %:p:h
+        
+        function! SwitchToBuf(filename)
+            "let fullfn = substitute(a:filename, "^\\~/", $HOME . "/", "")
+            " find in current tab
             let bufwinnr = bufwinnr(a:filename)
             if bufwinnr != -1
-                exec "normal " . tab . "gt"
                 exec bufwinnr . "wincmd w"
                 return
+            else
+                " find in each tab
+                tabfirst
+                let tab = 1
+                while tab <= tabpagenr("$")
+                    let bufwinnr = bufwinnr(a:filename)
+                    if bufwinnr != -1
+                        exec "normal " . tab . "gt"
+                        exec bufwinnr . "wincmd w"
+                        return
+                    endif
+                    tabnext
+                    let tab = tab + 1
+                endwhile
+                " not exist, new tab
+                exec "tabnew " . a:filename
             endif
-            tabnext
-            let tab = tab + 1
-        endwhile
-        " not exist, new tab
-        exec "tabnew " . a:filename
-    endif
-endfunction
+        endfunction
+    " }
+" }
 
-"Fast edit vimrc
-if g:iswindows==0
-    "Fast reloading of the .vimrc
-    map <silent> <leader>ss :source ~/.vimrc<cr>
-    "Fast editing of .vimrc
-    map <silent> <leader>ee :call SwitchToBuf("~/.vimrc")<cr>
-    "When .vimrc is edited, reload it
-    autocmd! bufwritepost .vimrc source ~/.vimrc
-elseif g:iswindows==1
-    " Set helplang
-    set helplang=cn
-    "Fast reloading of the _vimrc
-    map <silent> <leader>ss :source ~/_vimrc<cr>
-    "Fast editing of _vimrc
-    map <silent> <leader>ee :call SwitchToBuf("~/_vimrc")<cr>
-    "When _vimrc is edited, reload it
-    autocmd! bufwritepost _vimrc source ~/_vimrc
-endif
+" Common Setting {
+    "ÓÃ¿Õ¸ñ¼üÀ´¿ª¹ØÕÛµş {
+        nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+        "Á½´Îo»»ĞĞ¶ø²»ÓÃ½øÈë±à¼­Ä£Ê½
+        noremap go o<esc>
+        noremap gO O<esc>
+    " }
+    
+    " history´æ´¢³¤¶È¡£{
+        set history=2000
+    " }
+    
+    " ÎÄ¼şÀàĞÍ {
+        filetype on                "¼ì²âÎÄ¼şÀàĞÍ
+        filetype indent on         "Õë¶Ô²»Í¬µÄÎÄ¼şÀàĞÍ²ÉÓÃ²»Í¬µÄËõ½ø¸ñÊ½
+        filetype plugin on         "ÔÊĞí²å¼ş
+        filetype plugin indent on  "Æô¶¯×Ô¶¯²¹È«
+    " }
+    
+    " ÕÛµş{
+        set foldenable          " ¿ªÊ¼ÕÛµş
+        set foldmethod=indent   " ÉèÖÃÕÛµş·½Ê½(syntax\marker\expr)
+        set foldcolumn=0        " ÉèÖÃÕÛµşÇøÓòµÄ¿í¶È
+        setlocal foldlevel=1    " ÉèÖÃÕÛµş²ãÊıÎª
+        set foldlevelstart=99   " ´ò¿ªÎÄ¼şÊÇÄ¬ÈÏ²»ÕÛµş´úÂë
+        "set foldclose=all      " ÉèÖÃÎª×Ô¶¯¹Ø±ÕÕÛµş
+    " }
 
-"--------------------------------
-"       Vundle
-"--------------------------------
-set nocompatible               " be iMproved
-filetype off                   " required!
+    " ÆäËü {
+        syntax on          "´ò¿ª¸ßÁÁ
+        set hlsearch       "¸ßÁÁÏÔÊ¾½á¹û
+        set incsearch      "ÔÚÊäÈëÒªËÑË÷µÄÎÄ×ÖÊ±£¬vim»áÊµÊ±Æ¥Åä
+        set ignorecase     " ËÑË÷Ê±ºöÂÔ´óĞ¡Ğ´
+        set showmatch      " ÏÔÊ¾À¨ºÅÅä¶ÔÇé¿ö
+        set mat=2          " How many tenths of a second to blink when matching brackets
+        set number         " ÏÔÊ¾ĞĞºÅ
+        set title          " change the terminal's title
+        set novisualbell   " don't beep
+        set noerrorbells   " don't beep
+        set vb t_vb=       "È¥µô´íÎóÉùÒô
+        
+        let mapleader = ","     "Set mapleader
+        
+        set tabstop=4           " ÉèÖÃTab¼üµÄ¿í¶È        [µÈÍ¬µÄ¿Õ¸ñ¸öÊı]
+        set shiftwidth=4   "×Ô¶¯Ëõ½øµÄ¿í¶È
+        set softtabstop=4       " °´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô 4 ¸ö¿Õ¸ñ
+        set smarttab            " insert tabs on the start of a line according to shiftwidth, not tabstop °´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô 4 ¸ö¿Õ¸ñ
+        set expandtab      "ÓÃ¿Õ¸ñ´úÌætab
+        
+        set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+        set smartindent          "Smart indent
+        set autoindent           " always set autoindenting on
+        " never add copyindent, case error   " copy the previous indentation on autoindenting
+        
+        set nobackup          "²»Éú³É~±¸·İÎÄ¼ş(gvimĞèÒªÍ¬Ê±ĞŞ¸Ävimrc_example.vim)
+        set nocompatible      "¹Ø±Õvi¼æÈİÄ£Ê½£¬±ÜÃâÒı·¢ÎÊÌâ
+        set autoread          " ÎÄ¼şĞŞ¸ÄÖ®ºó×Ô¶¯ÔØÈë¡£
+        set nobackup          " È¡Ïû±¸·İ¡£ ÊÓÇé¿ö×Ô¼º¸Ä
+        set noswapfile
+        set cursorline        " Í»³öÏÔÊ¾µ±Ç°ĞĞ
+        
+        "create undo file
+        set undolevels=1000         " How many undos
+        set undoreload=10000        " number of lines to save for undo
+        
+        set wildignore=*.swp,*.bak,*.pyc,*.class
+        
+        set ruler                 "ÏÔÊ¾µ±Ç°µÄĞĞºÅÁĞºÅ£º
+        set showcmd               "ÔÚ×´Ì¬À¸ÏÔÊ¾ÕıÔÚÊäÈëµÄÃüÁî
+        set showmode              " Show current mode
+        
+        set scrolloff=7          "j/k ÉÏÏÂ¹ö¶¯,Ê¼ÖÕÔÚÖĞ¼ä
+        
+        "set winwidth=79
+        
+        " ÃüÁîĞĞ£¨ÔÚ×´Ì¬ĞĞÏÂ£©µÄ¸ß¶È£¬Ä¬ÈÏÎª1£¬ÕâÀïÊÇ2
+        set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+        " Always show the status line
+        set laststatus=2
 
-" ´Ë´¦¹æ¶¨VundleµÄÂ·¾¶
-" if Linux
-"   set rtp+=~/.vim/bundle/vundle/
-"   call vundle#rc('$VIM/vimfiles/bundle/')
-" if Windows
-    set rtp+=$VIM/vimfiles/bundle/vundle/
-    call vundle#rc('$VIM/vimfiles/bundle/')
+    " }
+    
+    " ×ÖÌå¼°Íâ¹Û {
+        set guifont=Bitstream_Vera_Sans_Mono:h9.5:cANSI      "×ÖÌåÉèÖÃÎªBitstream
+        
+        set guioptions-=m               "°ÑguiµÄ²Ëµ¥À¸È¥µô
+        set guioptions-=T               "È¥µô¹¤¾ßÀ¸
+        autocmd GUIEnter * simalt ~x    "Æô¶¯Ê±×î´ó»¯
+        
+        "ÏÂÃæµÄÉèÖÃ±ÜÃâvimÖĞÎÄ³öÏÖÂÒÂë
+        set encoding=utf-8
+        set fileencodings=utf-8,chinese,latin-1
+        if has("win32")
+        set fileencoding=chinese
+        else
+        set fileencoding=utf-8
+        endif
+        "½â¾ö²Ëµ¥ÂÒÂë
+        source $VIMRUNTIME/delmenu.vim
+        source $VIMRUNTIME/menu.vim
+        "½â¾öconsleÊä³öÂÒÂë
+        language messages zh_CN.utf-8
+    " }
 
-" original repos on github
-" githubÉÏµÄÓÃ»§Ğ´µÄ²å¼ş£¬Ê¹ÓÃÕâÖÖÓÃ»§Ãû+repoÃû³ÆµÄ·½Ê½
-Bundle 'gmarik/vundle'
-" vimscriptsµÄrepoÊ¹ÓÃÏÂÃæµÄ¸ñÊ½£¬Ö±½ÓÊÇ²å¼şÃû³Æ
-"Bundle 'taglist.vim'
+    "Fast edit vimrc {
+        if g:iswindows==0
+            "Fast reloading of the .vimrc
+            map <silent> <leader>ss :source ~/.vimrc<cr>
+            "Fast editing of .vimrc
+            map <silent> <leader>ee :call SwitchToBuf("~/.vimrc")<cr>
+            "When .vimrc is edited, reload it
+            autocmd! bufwritepost .vimrc source ~/.vimrc
+        elseif g:iswindows==1
+            " Set helplang
+            set helplang=cn
+            "Fast reloading of the _vimrc
+            map <silent> <leader>ss :source ~/_vimrc<cr>
+            "Fast editing of _vimrc
+            map <silent> <leader>ee :call SwitchToBuf("~/_vimrc")<cr>
+            "When _vimrc is edited, reload it
+            autocmd! bufwritepost _vimrc source ~/_vimrc
+        endif
+    " }
+    
+    
+" }
 
+" Vundle {
+    set nocompatible               " be iMproved
+    filetype off                   " required!
 
-"===============ÑÕÉ«Ö÷Ìâ===================="
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/Lucius'
-Bundle 'tomasr/molokai'
-colorscheme solarized     "ÉèÖÃÑÕÉ«Ö÷Ìâ
-set background=dark
-let g:solarized_termtrans=1
-let g:solarized_contrast="normal"
-let g:solarized_visibility="normal"
+    " ´Ë´¦¹æ¶¨VundleµÄÂ·¾¶
+"    if(g:iswindows==0)
+        "set rtp+=~/.vim/bundle/vundle/
+"        call vundle#rc('$VIM/vimfiles/bundle/')
+"    else
+        set rtp+=$VIM/vimfiles/bundle/vundle/
+        call vundle#rc('$VIM/vimfiles/bundle/')
+"    endif
 
-" ==============µ¼º½ ================
-"Ä¿Â¼µ¼º½
-map <leader>n :NERDTreeToggle<CR>
-let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-let g:netrw_home='~/bak'
-"close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+    " original repos on github
+    " githubÉÏµÄÓÃ»§Ğ´µÄ²å¼ş£¬Ê¹ÓÃÕâÖÖÓÃ»§Ãû+repoÃû³ÆµÄ·½Ê½
+    Bundle 'gmarik/vundle'
+    " vimscriptsµÄrepoÊ¹ÓÃÏÂÃæµÄ¸ñÊ½£¬Ö±½ÓÊÇ²å¼şÃû³Æ
+    "Bundle 'taglist.vim'
+" }
 
-" ============ minibufferexpl ================
-Bundle 'fholgado/minibufexpl.vim'
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-"½â¾öFileExplorer´°¿Ú±äĞ¡ÎÊÌâ
-let g:miniBufExplForceSyntaxEnable = 1
-let g:miniBufExplorerMoreThanOne=2
-let g:miniBufExplCycleArround=1
+" ÑÕÉ«Ö÷Ìâ {
+    Bundle 'altercation/vim-colors-solarized'
+    Bundle 'vim-scripts/Lucius'
+    Bundle 'tomasr/molokai'
+    colorscheme solarized     "ÉèÖÃÑÕÉ«Ö÷Ìâ
+    set background=dark
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="normal"
+    let g:solarized_visibility="normal"
+"}
 
-" ============ file search ctrlp =============
+" µ¼º½ { 
+    "Ä¿Â¼µ¼º½
+    map <leader>n :NERDTreeToggle<CR>
+    let NERDTreeHighlightCursorline=1
+    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+    let g:netrw_home='~/bak'
+    "close vim if the only window left open is a NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+"}
+
+" minibufferexpl { 
+"    Bundle 'fholgado/minibufexpl.vim'
+    "let g:miniBufExplMapWindowNavVim = 1
+    "let g:miniBufExplMapWindowNavArrows = 1
+    "let g:miniBufExplMapCTabSwitchBufs = 1
+    "let g:miniBufExplModSelTarget = 1
+    ""½â¾öFileExplorer´°¿Ú±äĞ¡ÎÊÌâ
+    "let g:miniBufExplForceSyntaxEnable = 1
+    "let g:miniBufExplorerMoreThanOne=2
+"    let g:miniBufExplCycleArround=1
+"}
+
+" file search ctrlp {
 Bundle 'kien/ctrlp.vim'
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-map <leader>f :CtrlPMRU<CR>
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
-    \ }
-"\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
+    let g:ctrlp_map = '<leader>p'
+    let g:ctrlp_cmd = 'CtrlP'
+    map <leader>f :CtrlPMRU<CR>
+    "set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+        \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
+        \ }
+    "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    let g:ctrlp_working_path_mode=0
+    let g:ctrlp_match_window_bottom=1
+    let g:ctrlp_max_height=15
+    let g:ctrlp_match_window_reversed=0
+    let g:ctrlp_mruf_max=500
+    let g:ctrlp_follow_symlinks=1
+"}
 
-" =========== ÏÔÊ¾ÔöÇ¿ ==================
+" ÏÔÊ¾ÔöÇ¿ {
 "×´Ì¬À¸ÔöÇ¿Õ¹Ê¾
 Bundle 'Lokaltog/vim-powerline'
 "if want to use fancy,need to add font patch -> git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
@@ -267,13 +286,15 @@ let g:indentLine_char = '|'
 "for show no user whitespaces
 Bundle 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
+" }
 
-" =========== ¿ìËÙÒÆ¶¯ ==============
+" ¿ìËÙÒÆ¶¯ {
 "¸ü¸ßĞ§µÄÒÆ¶¯ ,, + w/fx
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-scripts/matchit.zip'
+" }
 
-" ===========×Ô¶¯²¹È« ================
+" ×Ô¶¯²¹È« {
 "Æù½ñÎ»ÖÃÓÃµ½µÄ×îºÃµÄ×Ô¶¯VIM×Ô¶¯²¹È«²å¼ş
 Bundle 'Valloric/YouCompleteMe'
 "youcompleteme  Ä¬ÈÏtab  s-tab ºÍ×Ô¶¯²¹È«³åÍ»
@@ -281,38 +302,44 @@ Bundle 'Valloric/YouCompleteMe'
 let g:ycm_key_list_select_completion = ['<Down>']
 "let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<Up>']
+"}
 
-" ========= ¿ìËÙ²åÈë´úÂëÆ¬¶Î =============
+" ¿ìËÙ²åÈë´úÂëÆ¬¶Î {
 "Bundle 'vim-scripts/UltiSnips'
 Bundle 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 "¶¨Òå´æ·Å´úÂëÆ¬¶ÎµÄÎÄ¼ş¼Ğ .vim/snippetsÏÂ£¬Ê¹ÓÃ×Ô¶¨ÒåºÍÄ¬ÈÏµÄ£¬½«»áµÄµ½È«¾Ö£¬ÓĞ³åÍ»µÄ»áÌáÊ¾
 let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
+"}
 
-" ¿ìËÙ¼ÓÈëĞŞ¸Ä»·ÈÆ×Ö·û
+" ¿ìËÙ¼ÓÈëĞŞ¸Ä»·ÈÆ×Ö·û {
 Bundle 'tpope/vim-surround'
 "for repeat -> enhance surround.vim, . to repeat command
 Bundle 'tpope/vim-repeat'
+"}
 
-"×Ô¶¯²¹È«µ¥ÒıºÅ£¬Ë«ÒıºÅµÈ
+"×Ô¶¯²¹È«µ¥ÒıºÅ£¬Ë«ÒıºÅµÈ {
 Bundle 'Raimondi/delimitMate'
 " for python docstring ",ÓÅ»¯ÊäÈë
 au FileType python let b:delimitMate_nesting_quotes = ['"']
+" }
 
-"for code alignment
+"for code alignment {
 Bundle 'godlygeek/tabular'
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+" }
 
-"for visual selection
+"for visual selection {
 Bundle 'terryma/vim-expand-region'
 map = <Plug>(expand_region_expand)
 map - <Plug>(expand_region_shrink)
+" }
 
-"for mutil cursor
+"for mutil cursor {
 Bundle 'terryma/vim-multiple-cursors'
 let g:multi_cursor_use_default_mapping=0
 " Default mapping
@@ -320,8 +347,9 @@ let g:multi_cursor_next_key='<C-m>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
+" }
 
-" ============= Óï·¨¼ì²é ============= 
+" Óï·¨¼ì²é {
 " ±à¼­Ê±×Ô¶¯Óï·¨¼ì²é±êºì, vim-flake8Ä¿Ç°»¹²»Ö§³Ö,ËùÒÔ¶à×°Ò»¸ö
 " Ê¹ÓÃpyflakes,ËÙ¶È±Èpylint¿ì
 Bundle 'scrooloose/syntastic'
@@ -336,8 +364,9 @@ highlight SyntasticErrorSign guifg=white guibg=black
 " python fly check, ÃÖ²¹syntasticÖ»ÄÜ´ò¿ªºÍ±£´æ²Å¼ì²éÓï·¨µÄ²»×ã
 Bundle 'kevinw/pyflakes-vim'
 let g:pyflakes_use_quickfix = 0
+" }
 
-" ============= ¾ßÌåÓïÑÔÓï·¨¸ßÁÁ =========== 
+" ¾ßÌåÓïÑÔÓï·¨¸ßÁÁ { 
 " for python.vim syntax highlight
 Bundle 'hdima/python-syntax'
 let python_highlight_all = 1
@@ -368,33 +397,34 @@ map <leader>td <Plug>TaskList
 "edit history, ¿ÉÒÔ²é¿´»Øµ½Ä³¸öÀúÊ·×´Ì¬
 Bundle 'sjl/gundo.vim'
 nnoremap <leader>h :GundoToggle<CR>
+" }
 
-
-" ============ session manager =============
+" session manager {
+Bundle 'vim-scripts/sessionman.vim'
 autocmd VimEnter * call EnterSessionList()
 autocmd VimLeave * call SaveSession()
 function EnterSessionList()
     silent! execute "SessionList"
-    silent! execute "cs add e:\\wing\\work\\spice\\cscope.out"
 endfunction
 function SaveSession()
     silent! execute "SessionSave"
 endfunction
+" }
 
-" =========== nerd commenter ==============
+" nerd commenter {
 Bundle 'scrooloose/nerdcommenter'
 let NERDShutUp=1
+" }
 
-"-------------------------------
-"       tags
-"-------------------------------
+" tags {
+Bundle 'vim-scripts/ctags.vim'
 "Ê×ÏÈÔÚµ±Ç°Ä¿Â¼ÖĞÑ°ÕÒtags£¬ÕÒ²»µ½Ïò¸¸Ä¿Â¼ÖĞÕÒ£¬Ò»Ö±µİ¹é
 set tags=tags;
 "set autochdir		"¸Ä±ävimµÄµ±Ç°Ä¿Â¼¡£ÒòÎªcscopeÒª¾ø¶ÔÂ·¾¶£¬Ò»°ã¹Ø±Õ
+" }
 
-"-------------------------------
-"      cscope
-"-------------------------------
+" cscope {
+Bundle 'vim-scripts/cscope.vim'
 "Éú³ÉcscopeÊı¾İ¿â¡¢ctags
 map <C-F12> :call Do_GenCsTag()<CR>
 function Do_GenCsTag()
@@ -468,7 +498,6 @@ function Do_GenCsTag()
         endif
     endif
 endfunction
-
 "set cscope output to quickfix windows
 if has("cscope")
     "set cscopequickfix=s-,c-,d-,i-,t-,e-
@@ -502,14 +531,15 @@ nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 "²éÕÒ±¾º¯Êıµ÷ÓÃµÄº¯Êı
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-"============±êÇ©µ¼º½============
+" }
+
+" ±êÇ©µ¼º½ {
 Bundle 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
+" }
 
-"-------------------------------
-"       tag list
-"-------------------------------
+" tag list {
 Bundle 'vim-scripts/taglist.vim'
 if g:iswindows==1                "Éè¶¨windowsÏµÍ³ÖĞctags³ÌĞòµÄÎ»ÖÃ
     let Tlist_Ctags_Cmd = 'ctags'
@@ -523,10 +553,10 @@ let Tlist_File_Fold_Auto_Close=1        "ÈÃµ±Ç°²»±»±à¼­µÄÎÄ¼şµÄ·½·¨ÁĞ±í×Ô¶¯ÕÛµşÆ
 
 "Ó³ÉäF8ÎªTaglist
 map <silent> <F8> :TlistToggle<cr>
+" }
 
-"-------------------------------
-"    OmniCppComplete
-"-------------------------------
+" OmniCppComplete {
+Bundle 'vim-scripts/OmniCppComplete'
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
 let OmniCpp_ShowAccess = 1
@@ -538,11 +568,10 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " ×Ô¶¯¹Ø±Õ²¹È«´°¿Ú
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest
+" }
 
-
-"-----------------------------
-" lookupfile setting
-"-----------------------------
+" lookupfile setting {
+Bundle 'vim-scripts/lookupfile'
 let g:LookupFile_MinPatLength = 2
 let g:LookupFile_PreserveLastPattern = 0
 let g:LookupFile_PreservePatternHistory = 0
@@ -581,18 +610,17 @@ nmap <silent> <leader>lk :LUTags<cr>
 nmap <silent> <leader>ll :LUBufs<cr>
 "Ó³ÉäLUWalkÎª,lw-----ËÑË÷Ä¿Â¼
 nmap <silent> <leader>lw :LUWalk<cr>
+" }
 
-
-"-------------------------------
-"      netrw setting
-"-------------------------------
+" netrw setting {
+Bundle 'vim-scripts/netrw.vim'
 let g:netrw_winsize = 30
 " ,fe´ò¿ªÎÄ¼şä¯ÀÀÆ÷
 nmap <silent> <leader>fe :Sexplore!<cr>
+" }
 
-"-------------------------------
-"       BufExplorer
-"-------------------------------
+" BufExplorer {
+Bundle 'corntrace/bufexplorer'
 let g:bufExplorerDefaultHelp=0       " Do not show default help.
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
 let g:bufExplorerSortBy='mru'        " Sort by most recently used.
@@ -601,9 +629,11 @@ let g:bufExplorerSplitVertical=1     " Split vertically.
 let g:bufExplorerSplitVertSize = 30  " Split width
 let g:bufExplorerUseCurrentWindow=1  " Open in new window.
 autocmd BufWinEnter \[Buf\ List\] setl nonumber
+" }
 
 filetype plugin indent on     " vbundle required!
-"============Default settings=================
+
+" Default settings {
 set nocompatible
 " For windows version
 if g:iswindows==1
@@ -611,4 +641,5 @@ if g:iswindows==1
     source $VIMRUNTIME/mswin.vim
     behave mswin
 endif
+" }
 
