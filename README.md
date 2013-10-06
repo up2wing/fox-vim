@@ -10,12 +10,12 @@ fox-vim
 fox-vim, using vundle to manage plugins
 
 一. 安装插件
-    使用了vundle管理插件，首先要安装git和curl，方法见参考1。Windows下直接执行install.bat。 
+    使用了vundle管理插件，首先要安装git和curl，方法见参考1。Windows下直接执行install.bat。
+    产生cscope和tags的时候，使用了linux命令find等，需要安装Cygwin或者UnixUtils，并将find拷贝一份重命名gfind.exe。
 
 二. 插件的使用
     1、tags
-        将gentags.bat和gentags.sh两个文件拷贝到vim.exe所在目录，然后在vim中执行:!gentags.bat，即可生成filenametags
-        将ctags58目录中的exe文件拷贝到vim.exe所在目录即可。
+        将ctags58目录中的exe文件拷贝到vim.exe所在目录。
         Ctrl+F12即可生成tags
         命令：
             :tag {ident}            "跳转到指定的标签

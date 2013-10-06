@@ -124,9 +124,9 @@
         "set winwidth=79
         
         " 命令行（在状态行下）的高度，默认为1，这里是2
-        set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
-        " Always show the status line
-        set laststatus=2
+"        set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+        "" Always show the status line
+     "   set laststatus=2
 
     " }
     
@@ -208,6 +208,7 @@
 
 " 导航 { 
     "目录导航
+    Bundle 'scrooloose/nerdtree'
     map <leader>n :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
@@ -362,8 +363,8 @@ let g:syntastic_python_checkers=['pyflakes']
 highlight SyntasticErrorSign guifg=white guibg=black
 
 " python fly check, 弥补syntastic只能打开和保存才检查语法的不足
-Bundle 'kevinw/pyflakes-vim'
-let g:pyflakes_use_quickfix = 0
+"Bundle 'kevinw/pyflakes-vim'
+"let g:pyflakes_use_quickfix = 0
 " }
 
 " 具体语言语法高亮 { 
@@ -401,7 +402,7 @@ nnoremap <leader>h :GundoToggle<CR>
 
 " session manager {
 Bundle 'vim-scripts/sessionman.vim'
-autocmd VimEnter * call EnterSessionList()
+" autocmd VimEnter * call EnterSessionList()
 autocmd VimLeave * call SaveSession()
 function EnterSessionList()
     silent! execute "SessionList"
@@ -409,6 +410,8 @@ endfunction
 function SaveSession()
     silent! execute "SessionSave"
 endfunction
+
+map <silent> <F7> :SessionList<cr>
 " }
 
 " nerd commenter {
@@ -548,7 +551,7 @@ elseif g:iswindows==0              "设定linux系统中ctags程序的位置
 endif
 let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗
+let Tlist_Use_Right_Window = 0        "在右侧窗口中显示taglist窗
 let Tlist_File_Fold_Auto_Close=1        "让当前不被编辑的文件的方法列表自动折叠起来
 
 "映射F8为Taglist
@@ -571,6 +574,7 @@ set completeopt=menuone,menu,longest
 " }
 
 " lookupfile setting {
+Bundle 'vim-scripts/genutils'
 Bundle 'vim-scripts/lookupfile'
 let g:LookupFile_MinPatLength = 2
 let g:LookupFile_PreserveLastPattern = 0
