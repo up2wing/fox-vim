@@ -105,7 +105,6 @@
         set nobackup          "不生成~备份文件(gvim需要同时修改vimrc_example.vim)
         set nocompatible      "关闭vi兼容模式，避免引发问题
         set autoread          " 文件修改之后自动载入。
-        set nobackup          " 取消备份。 视情况自己改
         set noswapfile
         set cursorline        " 突出显示当前行
         
@@ -213,6 +212,7 @@
     let NERDTreeHighlightCursorline=1
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
     let g:netrw_home='~/bak'
+    let NERDTreeWinPos=1
     "close vim if the only window left open is a NERDTree
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 "}
@@ -403,11 +403,11 @@ nnoremap <leader>h :GundoToggle<CR>
 " session manager {
 Bundle 'vim-scripts/sessionman.vim'
 " autocmd VimEnter * call EnterSessionList()
-autocmd VimLeave * call SaveSession()
-function EnterSessionList()
+" autocmd VimLeave * call SaveSession()
+function! EnterSessionList()
     silent! execute "SessionList"
 endfunction
-function SaveSession()
+function! SaveSession()
     silent! execute "SessionSave"
 endfunction
 
@@ -430,7 +430,7 @@ set tags=tags;
 Bundle 'vim-scripts/cscope.vim'
 "生成cscope数据库、ctags
 map <C-F12> :call Do_GenCsTag()<CR>
-function Do_GenCsTag()
+function! Do_GenCsTag()
 "    if(g:iswindows==0)
 "        silent! execute "!bash gentags.sh"
 "    else
@@ -494,7 +494,12 @@ function Do_GenCsTag()
         else
             silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
         endif
-        silent! execute "!cscope -b"
+        if(g:iswindows==0)
+            silent! execute "!cscope -bkq"
+        else
+            " Windows下sort问题，不能使用-q，故只能这样
+            silent! execute "!gentags.bat"
+        endif
         execute "normal :"
         if filereadable("cscope.out")
             execute "cs add cscope.out"
@@ -503,7 +508,7 @@ function Do_GenCsTag()
 endfunction
 "set cscope output to quickfix windows
 if has("cscope")
-    "set cscopequickfix=s-,c-,d-,i-,t-,e-
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
     set csto=1
     set cst
     set csverb
@@ -540,22 +545,28 @@ nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 Bundle 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
+let g:tagbar_left = 1
 " }
 
 " tag list {
-Bundle 'vim-scripts/taglist.vim'
-if g:iswindows==1                "设定windows系统中ctags程序的位置
-    let Tlist_Ctags_Cmd = 'ctags'
-elseif g:iswindows==0              "设定linux系统中ctags程序的位置
-    let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-endif
-let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
-let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 0        "在右侧窗口中显示taglist窗
-let Tlist_File_Fold_Auto_Close=1        "让当前不被编辑的文件的方法列表自动折叠起来
+" 用tagbar代替，面向对象语言支持更好
+"Bundle 'vim-scripts/taglist.vim'
+"if g:iswindows==1                "设定windows系统中ctags程序的位置
+    "let Tlist_Ctags_Cmd = 'ctags'
+"elseif g:iswindows==0              "设定linux系统中ctags程序的位置
+    "let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+"endif
+"let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+"let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+"let Tlist_Use_Right_Window = 0        "在右侧窗口中显示taglist窗
+"let Tlist_File_Fold_Auto_Close=1        "让当前不被编辑的文件的方法列表自动折叠起来
 
-"映射F8为Taglist
-map <silent> <F8> :TlistToggle<cr>
+""映射F8为Taglist
+"map <silent> <F8> :TlistToggle<cr>
+" }
+
+" Alternate 头文件切换 {
+Bundle 'vim-scripts/a.vim'
 " }
 
 " OmniCppComplete {

@@ -4,14 +4,15 @@ fox-vim
 " Version: 1
 " Email: up2wing@gmail.com
 " ReadMe: README.md
-" Sections:
 
 
 fox-vim, using vundle to manage plugins
 
 一. 安装插件
     使用了vundle管理插件，首先要安装git和curl，方法见参考1。Windows下直接执行install.bat。
-    产生cscope和tags的时候，使用了linux命令find等，需要安装Cygwin或者UnixUtils，并将find拷贝一份重命名gfind.exe。
+    gentags.bat产生cscope.out，放到gvim.exe目录下。
+    产生cscope和tags的时候，使用了linux命令find等，需要安装Cygwin或者UnixUtils，并将find拷贝一份重命名gfind.exe, sort->gsort.exe
+    默认Cygwin安装在c:\cygwin目录，否则修改gentags.bat; cscope.exe及dll需要放到cygwin\bin下。
 
 二. 插件的使用
     1、tags
