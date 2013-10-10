@@ -296,13 +296,13 @@ Bundle 'vim-scripts/matchit.zip'
 " }
 
 " 自动补全 {
-"迄今位置用到的最好的自动VIM自动补全插件
-Bundle 'Valloric/YouCompleteMe'
+"迄今位置用到的最好的自动VIM自动补全插件, Windows下使用有问题
+" Bundle 'Valloric/YouCompleteMe'
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 "let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>']
+" let g:ycm_key_list_select_completion = ['<Down>']
 "let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
+" let g:ycm_key_list_previous_completion = ['<Up>']
 "}
 
 " 快速插入代码片段 {
@@ -366,6 +366,11 @@ highlight SyntasticErrorSign guifg=white guibg=black
 "Bundle 'kevinw/pyflakes-vim'
 "let g:pyflakes_use_quickfix = 0
 " }
+
+"QuickFix Toggle {
+Bundle 'vim-scripts/QFixToggle'
+nnoremap <silent> <leader>sf :QFix<CR>
+"}"
 
 " 具体语言语法高亮 { 
 " for python.vim syntax highlight
@@ -508,7 +513,7 @@ function! Do_GenCsTag()
 endfunction
 "set cscope output to quickfix windows
 if has("cscope")
-    set cscopequickfix=s-,c-,d-,i-,t-,e-
+    set cscopequickfix=s-,c-,g-,i-,t-,e-
     set csto=1
     set cst
     set csverb
@@ -522,6 +527,8 @@ endif
 "----查找函数、宏、枚举等定义的位置: alt+g
 nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <silent> <leader>sg :cs f g
+nmap <silent> <leader>ss :tag 
 "----查找调用本函数的函数:  alt+s
 nmap <M-s> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :cs find c <C-R>=expand("<cword>")<CR><CR>
