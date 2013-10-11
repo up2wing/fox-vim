@@ -208,7 +208,7 @@
 " 导航 { 
     "目录导航
     Bundle 'scrooloose/nerdtree'
-    map <leader>n :NERDTreeToggle<CR>
+    map <leader>w :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
     let g:netrw_home='~/bak'
@@ -259,6 +259,12 @@ Bundle 'Lokaltog/vim-powerline'
 "if want to use fancy,need to add font patch -> git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
 "let g:Powerline_symbols = 'fancy'
 "let g:Powerline_symbols = 'unicode'
+
+Bundle 'vim-scripts/Mark'
+"nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
+   " nmap <unique> <silent> <leader>m <Plug>MarkSet
+nmap <M-e> <Plug>MarkSet 
+nmap <esc>e <Plug>MarkSet
 
 "括号显示增强
 Bundle 'kien/rainbow_parentheses.vim'
