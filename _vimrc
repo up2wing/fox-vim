@@ -217,6 +217,11 @@
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 "}
 
+" grep{
+Bundle 'vim-scripts/grep.vim'
+nnoremap <silent> <F3> :Grep<CR>
+"}
+
 " minibufferexpl { 
 "    Bundle 'fholgado/minibufexpl.vim'
     "let g:miniBufExplMapWindowNavVim = 1
@@ -433,6 +438,8 @@ set tags=tags;
 
 " cscope {
 Bundle 'vim-scripts/cscope.vim'
+Bundle 'vim-scripts/autoload_cscope.vim'
+let g:autocscope_menus=0
 "生成cscope数据库、ctags
 map <C-F12> :call Do_GenCsTag()<CR>
 function! Do_GenCsTag()
