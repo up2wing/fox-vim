@@ -54,6 +54,8 @@
         "两次o换行而不用进入编辑模式
         noremap go o<esc>
         noremap gO O<esc>
+        nmap <C-n> <C-e>
+        nmap <C-p> <C-y>
     " }
     
     " history存储长度。{
