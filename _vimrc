@@ -50,7 +50,7 @@
 
 " Common Setting {
     "用空格键来开关折叠 {
-        nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+        "nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
         "两次o换行而不用进入编辑模式
         noremap go o<esc>
         noremap gO O<esc>
@@ -106,7 +106,7 @@
         set nocompatible      "关闭vi兼容模式，避免引发问题
         set autoread          " 文件修改之后自动载入。
         set noswapfile
-        set cursorline        " 突出显示当前行
+        "set cursorline        " 突出显示当前行
         
         "create undo file
         set undolevels=1000         " How many undos
@@ -338,11 +338,11 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " }
 
 "for code alignment {
-Bundle 'godlygeek/tabular'
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
+"Bundle 'godlygeek/tabular'
+"nmap <Leader>a= :Tabularize /=<CR>
+"vmap <Leader>a= :Tabularize /=<CR>
+"nmap <Leader>a: :Tabularize /:\zs<CR>
+"vmap <Leader>a: :Tabularize /:\zs<CR>
 " }
 
 "for visual selection {
@@ -381,6 +381,8 @@ highlight SyntasticErrorSign guifg=white guibg=black
 "QuickFix Toggle {
 Bundle 'vim-scripts/QFixToggle'
 nnoremap <silent> <leader>sf :QFix<CR>
+nmap <F4> :cn<cr>
+nmap <F3> :cp<cr>
 "}"
 
 " 具体语言语法高亮 { 
@@ -392,8 +394,8 @@ let python_highlight_all = 1
 "Bundle 'jnwhiteh/vim-golang'
 
 " for markdown
-Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled=1
+"Bundle 'plasticboy/vim-markdown'
+"let g:vim_markdown_folding_disabled=1
 
 " for javascript
 "Bundle "pangloss/vim-javascript"
@@ -540,18 +542,19 @@ endif
 "----查找函数、宏、枚举等定义的位置: alt+g
 nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <M-d> :tag 
+nmap <esc>d :tag 
 nmap <silent> <leader>sg :cs f g
-nmap <silent> <leader>ss :tag 
 "----查找调用本函数的函数:  alt+s
 nmap <M-s> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :cs find c <C-R>=expand("<cword>")<CR><CR>
-"----查找指定的字符串:  alt+f
-nmap <M-f> :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <esc>f :cs find t <C-R>=expand("<cword>")<CR><CR>
 "查找C语言符号，即查找函数名、宏、枚举值等出现的地方
-nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <M-f> :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <esc>f :cs find s <C-R>=expand("<cword>")<CR><CR>
 "查找egrep模式，相当于egrep功能，但查找速度快多了
 nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"----查找指定的字符串:  alt+f
+nmap <C-@>s :cs find t <C-R>=expand("<cword>")<CR><CR>
 "查找并打开文件，类似vim的find功能
 nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 "查找包含本文件的文件
@@ -566,6 +569,7 @@ Bundle 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_left = 1
+let g:tagbar_sort = 0
 " }
 
 " tag list {
