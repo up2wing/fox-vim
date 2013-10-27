@@ -51,6 +51,8 @@ fox-vim, using vundle to manage plugins
         o.......Open files, directories and bookmarks
         i.......Open selected file in a split window上下分屏
         s.......Open selected file in a new vsplit左右分屏
+    10、语法高亮
+        拷贝cpp.vim, v.vim到vim的安装插件目录，覆盖默认的对应文件
 
 三、vim使用
     1、BufExplorer

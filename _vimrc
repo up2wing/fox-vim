@@ -450,17 +450,19 @@ set tags=tags;
 Bundle 'vim-scripts/cscope.vim'
 Bundle 'vim-scripts/autoload_cscope.vim'
 let g:autocscope_menus=0
+
+"set cscope output to quickfix windows
+if has("cscope")
+    set cscopequickfix=s-,c-,g-,i-,t-,e-
+    set csto=1
+    set cst
+    set csverb
+    set cspc=3
+endif
+
 "生成cscope数据库、ctags
 map <C-F12> :call Do_GenCsTag()<CR>
 function! Do_GenCsTag()
-"    if(g:iswindows==0)
-"        silent! execute "!bash gentags.sh"
-"    else
-"        silent! execute "!gentags.bat"
-"    endif
-"    if filereadable("cscope.out")
-"        execute "cs add cscope.out"
-"    endif
     let dir = getcwd()
     if filereadable("tags")
         if(g:iswindows==1)
@@ -525,28 +527,23 @@ function! Do_GenCsTag()
         execute "normal :"
         if filereadable("cscope.out")
             execute "cs add cscope.out"
+        else
+           let cscope_file=findfile("cscope.out", ".;")  
+           let cscope_pre=matchstr(cscope_file, ".*/")  
+           if !empty(cscope_file) && filereadable(cscope_file)  
+               exe "cs add" cscope_file cscope_pre  
+           endif
         endif
     endif
 endfunction
-"set cscope output to quickfix windows
-if has("cscope")
-    set cscopequickfix=s-,c-,g-,i-,t-,e-
-    set csto=1
-    set cst
-    set csverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    endif
-    set csverb
-endif
 
 "----查找函数、宏、枚举等定义的位置: alt+g
 nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <M-d> :tag 
 nmap <esc>d :tag 
-nmap <silent> <leader>sg :cs f g
+nmap <M-w> :cs f g 
+nmap <esc>w :cs f g 
 "----查找调用本函数的函数:  alt+s
 nmap <M-s> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :cs find c <C-R>=expand("<cword>")<CR><CR>
