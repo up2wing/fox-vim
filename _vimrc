@@ -462,6 +462,7 @@ endif
 
 "生成cscope数据库、ctags
 map <C-F12> :call Do_GenCsTag()<CR>
+map <F12> :call LoadCscope()<CR>
 function! Do_GenCsTag()
     let dir = getcwd()
     if filereadable("tags")
@@ -534,6 +535,33 @@ function! Do_GenCsTag()
                exe "cs add" cscope_file cscope_pre  
            endif
         endif
+    endif
+endfunction
+
+function! LoadCscope()
+    if (g:iswindows==1)
+        if (executable("cscope") && has("cscope"))
+        	let UpperPath = findfile("cscope.out", ".;")
+        	if (!empty(UpperPath))
+        		let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)	
+        		if (!empty(path))
+        			let s:CurrentDir = getcwd()
+        			let direct = strpart(s:CurrentDir, 0, 2) 
+        			let s:FullPath = direct . path
+        			let s:AFullPath = globpath(s:FullPath, "cscope.out")
+        			let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath 
+        			execute s:CscopeAddString 
+        		endif
+        	endif
+        endif
+    else
+       let db = findfile("cscope.out", ".;")
+       if (!empty(db))
+         let path = strpart(db, 0, match(db, "/cscope.out$"))
+         set nocscopeverbose " suppress 'duplicate connection' error
+         exe "cs add " . db . " " . path
+         set cscopeverbose
+       endif        
     endif
 endfunction
 
