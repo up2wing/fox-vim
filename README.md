@@ -9,37 +9,38 @@ fox-vim
 fox-vim, using vundle to manage plugins
 
 一. 安装插件
-    使用了vundle管理插件，首先要安装git和curl，方法见参考1。Windows下直接执行install.bat。
-    gentags.bat产生cscope.out，放到gvim.exe目录下。
-    产生cscope和tags的时候，使用了linux命令find等，需要安装Cygwin或者UnixUtils，并将find拷贝一份重命名gfind.exe, sort->gsort.exe
+    使用了vundle管理插件，首先要安装git和curl，方法见参考1。
+	然后设置HOME环境变量，指向vim的安装路径，例如：d:\Program Files\Vim。
+	Windows下直接执行install.bat。
+    产生cscope和tags的时候，使用了linux命令find等，需要安装Cygwin或者UnixUtils，并将find拷贝一份重命名gfind.exe, sort->gsort.exe。
     默认Cygwin安装在c:\cygwin目录，否则修改gentags.bat; cscope.exe及dll需要放到cygwin\bin下。
-
+	
 二. 插件的使用
     1、tags
-        将ctags58目录中的exe文件拷贝到vim.exe所在目录。
+	将ctags58目录中的exe文件拷贝到vim.exe所在目录。
         Ctrl+F12即可生成tags
         命令：
-            :tag {ident}            "跳转到指定的标签
-            :tags                   "显示标签栈
-            CTRL-]                  "跳转到当前光标下的标签
-            CTRL-T                  "跳到标签栈中较早的标签 
-    2、LookupFiles
+		:tag {ident}            "跳转到指定的标签
+		:tags                   "显示标签栈
+		CTRL-]                  "跳转到当前光标下的标签
+		CTRL-T                  "跳到标签栈中较早的标签 
+	2、LookupFiles
         首先安装genutils，然后安装lookupfiles插件。
         按”<F5>“或输入”:LookupFile“在当前窗口上方打开一个lookupfile小窗口。
-    3、cscope
+	3、cscope
         通过:cs add cscope.out添加数据库，使用参见vimrc文件。
-    4、Taglist
-        F8打开TagList窗口.
-    5、winmanager
+	4、Taglist
+        F9打开TagList窗口.
+	5、winmanager
         ,wm  打开winmanager
     6、OmniCppComplete
-        自动补全，在需要的地方按下<Ctrl+x>, <Ctrl+o>
+		自动补全，在需要的地方按下<Ctrl+x>, <Ctrl+o>
     7、NERD_commenter
-        自动注释：,cm是添加注释；,cu是取消注释
+		自动注释：,cm是添加注释；,cu是取消注释
     8、sessionman
-        将session保存、恢复
-    9、 nerdtree
-        ,n  打开 关闭树形目录结构
+		将session保存、恢复
+	9、 nerdtree
+		,n  打开 关闭树形目录结构
         在nerdtree窗口常用操作：(小写当前，大写root)
         x.......Close the current nodes parent收起当前目录树
         R.......Recursively refresh the current root刷新根目录树
@@ -51,25 +52,23 @@ fox-vim, using vundle to manage plugins
         o.......Open files, directories and bookmarks
         i.......Open selected file in a split window上下分屏
         s.......Open selected file in a new vsplit左右分屏
-    10、语法高亮
-        拷贝cpp.vim, v.vim到vim的安装插件目录，覆盖默认的对应文件
-
+		
 三、vim使用
     1、BufExplorer
-        ,be 正常打开；
+		,be 正常打开；
         ,bs 水平打开；
         ,bv 垂直打开
-    2、会话
+	2、会话
         1) 退出时:mksession! c:\Users\Administrator\project_name.vim，然后在用户目录中建立project_namex.vim，输入：
-          set path+=project_path
-          :cs add project_path\cscope.out
-        2) 打开时，cmd输入gvim &，在打开的vim中输入:source project_name.vim。
-    3、字体
+			set path+=project_path
+			:cs add project_path\cscope.out
+		2) 打开时，cmd输入gvim &，在打开的vim中输入:source project_name.vim。
+		3、字体
         采用Bitstream Vera Sans Mono，SourceInsight、VS、SSH都可以采用这种字体。
         双击VeraMono.ttf，直接安装即可。
-
-
-
+		
+		
+		
 参考：
     1. Vundle for Windows, https://github.com/gmarik/vundle/wiki/Vundle-for-Windows
     2. wklken/k-vim, https://github.com/wklken/k-vim
