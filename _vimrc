@@ -108,7 +108,7 @@
         set nocompatible      "关闭vi兼容模式，避免引发问题
         set autoread          " 文件修改之后自动载入。
         set noswapfile
-        "set cursorline        " 突出显示当前行
+        set cursorline        " 突出显示当前行
         
         "create undo file
         set undolevels=1000         " How many undos
