@@ -70,9 +70,12 @@ fox-vim, using vundle to manage plugins
 		3、字体
         采用Bitstream Vera Sans Mono，SourceInsight、VS、SSH都可以采用这种字体。
         双击VeraMono.ttf，直接安装即可。
-		
-		
-		
+
+    3、窗口
+        Ctrl+w  切分的窗口之间切换
+
+
+
 参考：
     1. Vundle for Windows, https://github.com/gmarik/vundle/wiki/Vundle-for-Windows
     2. wklken/k-vim, https://github.com/wklken/k-vim
