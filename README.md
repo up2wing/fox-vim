@@ -33,14 +33,12 @@ fox-vim, using vundle to manage plugins
     3、QuickFix窗口
         ,sf     "快速打开QuickFix窗口
         f3/F4   "向前/前后切换
-	3、cscope
+	4、cscope
         通过:cs add cscope.out添加数据库，使用参见vimrc文件。
-	4、Taglist
+	5、Taglist
         F9打开TagList窗口.
-	5、winmanager
+	6、winmanager
         ,wm  打开winmanager
-    6、OmniCppComplete
-		自动补全，在需要的地方按下<Ctrl+x>, <Ctrl+o>
     7、NERD_commenter
         自动注释：,cm是添加注释；,cu是取消注释
     8、sessionman
