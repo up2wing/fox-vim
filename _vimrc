@@ -729,7 +729,7 @@ set nocompatible
 " For windows version
 if g:iswindows==1
     source $VIMRUNTIME/vimrc_example.vim
-    source $VIMRUNTIME/mswin.vim
+    "source $VIMRUNTIME/mswin.vim
     behave mswin
 endif
 " }
