@@ -10,15 +10,15 @@ fox-vim, using vundle to manage plugins
 
 一. 安装插件
     使用了vundle管理插件，首先要安装git和curl，方法见参考1。
-	然后设置HOME环境变量，指向vim的安装路径，例如：d:\Program Files\Vim。
-	Windows下直接执行install.bat。
+    然后设置HOME环境变量，指向vim的安装路径，例如：d:\Program Files\Vim。
+    Windows下直接执行install.bat。
     产生cscope和tags的时候，使用了linux命令find等，需要安装Cygwin或者UnixUtils，并将find拷贝一份重命名gfind.exe, sort->gsort.exe。
     默认Cygwin安装在c:\cygwin目录，否则修改gentags.bat; cscope.exe及dll需要放到cygwin\bin下。
 
 二. 插件的使用
     1、tags
-	将ctags58目录中的exe文件拷贝到vim.exe所在目录。
-        Ctrl+F12即可生成tags,并自动添加数据库
+    将ctags58目录中的exe文件拷贝到vim.exe所在目录。
+    Ctrl+F12即可生成tags,并自动添加数据库
         Alt+d                   "打开符号表
         Alt+s                   "通过cscope查找引用
         Alt+f                   "搜索文本
@@ -73,6 +73,11 @@ fox-vim, using vundle to manage plugins
 
     3、窗口
         Ctrl+w  切分的窗口之间切换
+    4、常用操作
+        lb/le/lr    到达行尾/行首/首个不为空的单词
+        ,y          将选中文本复制到剪贴板
+        ,p          将剪贴板复制到vim
+        ,f          打开历史文件
 
 
 

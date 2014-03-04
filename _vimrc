@@ -54,8 +54,17 @@
         "两次o换行而不用进入编辑模式
         noremap go o<esc>
         noremap gO O<esc>
+        "仿照emacs滚动
         nmap <C-n> <C-e>
         nmap <C-p> <C-y>
+        " 定义快捷键到行首和行尾
+        nmap lb 0
+        nmap le $
+        nmap lr ^
+        " 设置快捷键将选中文本块复制至系统剪贴板
+        vnoremap <Leader>y "+y
+        " 设置快捷键将系统剪贴板内容粘贴至 vim
+        nmap <Leader>p "+p
     " }
     
     " history存储长度。{
