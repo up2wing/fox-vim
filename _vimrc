@@ -130,6 +130,10 @@
         set showmode              " Show current mode
         
         set scrolloff=7          "j/k 上下滚动,始终在中间
+
+        "insert mode shortcut
+        inoremap <C-f> <Right>
+        inoremap <C-b> <Left>
         
         "set winwidth=79
         
@@ -214,6 +218,10 @@
     let g:solarized_termtrans=1
     let g:solarized_contrast="normal"
     let g:solarized_visibility="normal"
+
+    " c++ syntax highlight
+    Bundle 'octol/vim-cpp-enhanced-highlight'
+    Bundle 'vim-scripts/STL-Syntax'
 "}
 
 " 导航 { 
