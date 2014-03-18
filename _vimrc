@@ -19,7 +19,7 @@
             let g:iswindows=0
         endif
         autocmd BufEnter * lcd %:p:h
-        
+
         function! SwitchToBuf(filename)
             "let fullfn = substitute(a:filename, "^\\~/", $HOME . "/", "")
             " find in current tab
@@ -66,21 +66,21 @@
         " 设置快捷键将系统剪贴板内容粘贴至 vim
         nmap <Leader>p "+p
     " }
-    
+
     " history存储长度。{
         set history=2000
     " }
-    
+
     " 文件类型 {
         filetype on                "检测文件类型
         filetype indent on         "针对不同的文件类型采用不同的缩进格式
         filetype plugin on         "允许插件
         filetype plugin indent on  "启动自动补全
     " }
-    
+
     " 折叠{
         set foldenable          " 开始折叠
-        set foldmethod=indent   " 设置折叠方式(syntax\marker\expr)
+        set foldmethod=syntax   " 设置折叠方式(indent\syntax\marker\expr)
         set foldcolumn=0        " 设置折叠区域的宽度
         setlocal foldlevel=1    " 设置折叠层数为
         set foldlevelstart=99   " 打开文件是默认不折叠代码
@@ -99,58 +99,58 @@
         set novisualbell   " don't beep
         set noerrorbells   " don't beep
         set vb t_vb=       "去掉错误声音
-        
+
         let mapleader = ","     "Set mapleader
-        
+
         set tabstop=4           " 设置Tab键的宽度        [等同的空格个数]
         set shiftwidth=4   "自动缩进的宽度
         set softtabstop=4       " 按退格键时可以一次删掉 4 个空格
         set smarttab            " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
         set expandtab      "用空格代替tab
-        
+
         set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
         set smartindent          "Smart indent
         set autoindent           " always set autoindenting on
         " never add copyindent, case error   " copy the previous indentation on autoindenting
-        
+
         set nobackup          "不生成~备份文件(gvim需要同时修改vimrc_example.vim)
         set nocompatible      "关闭vi兼容模式，避免引发问题
         set autoread          " 文件修改之后自动载入。
         set noswapfile
         set cursorline        " 突出显示当前行
-        
+
         "create undo file
         set undolevels=1000         " How many undos
         set undoreload=10000        " number of lines to save for undo
-        
+
         set wildignore=*.swp,*.bak,*.pyc,*.class
-        
+
         set ruler                 "显示当前的行号列号：
         set showcmd               "在状态栏显示正在输入的命令
         set showmode              " Show current mode
-        
+
         set scrolloff=7          "j/k 上下滚动,始终在中间
 
         "insert mode shortcut
         inoremap <C-f> <Right>
         inoremap <C-b> <Left>
-        
+
         "set winwidth=79
-        
+
         " 命令行（在状态行下）的高度，默认为1，这里是2
         set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
         " Always show the status line
         set laststatus=2
 
     " }
-    
+
     " 字体及外观 {
         set guifont=Bitstream_Vera_Sans_Mono:h9.5:cANSI      "字体设置为Bitstream
-        
+
         set guioptions-=m               "把gui的菜单栏去掉
         set guioptions-=T               "去掉工具栏
         autocmd GUIEnter * simalt ~x    "启动时最大化
-        
+
         "下面的设置避免vim中文出现乱码
         set encoding=utf-8
         set fileencodings=utf-8,chinese,latin-1
@@ -185,8 +185,6 @@
             autocmd! bufwritepost _vimrc source ~/_vimrc
         endif
     " }
-    
-    
 " }
 
 " Vundle {
@@ -224,7 +222,7 @@
     Bundle 'vim-scripts/STL-Syntax'
 "}
 
-" 导航 { 
+" 导航 {
     "目录导航
     Bundle 'scrooloose/nerdtree'
     map <leader>w :NERDTreeToggle<CR>
@@ -241,7 +239,7 @@ Bundle 'vim-scripts/grep.vim'
 nnoremap <silent> <F3> :Grep<CR>
 "}
 
-" minibufferexpl { 
+" minibufferexpl {
 "    Bundle 'fholgado/minibufexpl.vim'
     "let g:miniBufExplMapWindowNavVim = 1
     "let g:miniBufExplMapWindowNavArrows = 1
@@ -264,12 +262,14 @@ Bundle 'kien/ctrlp.vim'
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
         \ }
     "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-    let g:ctrlp_working_path_mode=0
+    let g:ctrlp_working_path_mode='rw'  "设置工作目录为最近的包括.git, .svn目录的目录
     let g:ctrlp_match_window_bottom=1
     let g:ctrlp_max_height=15
     let g:ctrlp_match_window_reversed=0
     let g:ctrlp_mruf_max=500
     let g:ctrlp_follow_symlinks=1
+    let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
+                                 \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 "}
 
 " 显示增强 {
@@ -282,7 +282,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-scripts/Mark'
 "nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
    " nmap <unique> <silent> <leader>m <Plug>MarkSet
-nmap <M-e> <Plug>MarkSet 
+nmap <M-e> <Plug>MarkSet
 nmap <esc>e <Plug>MarkSet
 
 "括号显示增强
@@ -307,7 +307,7 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 40
 let g:rbpt_loadcmd_toggle = 0
-    
+
 "代码排版缩进标识
 Bundle 'Yggdroot/indentLine'
 let g:indentLine_noConcealCursor = 1
@@ -351,7 +351,7 @@ set completeopt-=preview
 let g:ycm_min_num_of_chars_for_completion=1
 " 禁止缓存匹配项，每次都重新生成匹配项
 let g:ycm_cache_omnifunc=0
-" 语法关键字补全            
+" 语法关键字补全
 let g:ycm_seed_identifiers_with_syntax=1
 " 修改对C函数的补全快捷键，默认是CTRL + space，修改为ALT + ;
 let g:ycm_key_invoke_completion = '<M-;>'
@@ -361,12 +361,12 @@ nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<C
 "}
 
 " 快速插入代码片段 {
-Bundle 'vim-scripts/UltiSnips'
-Bundle 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-"定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
-let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
+"Bundle 'vim-scripts/UltiSnips'
+"Bundle 'SirVer/ultisnips'
+"let g:UltiSnipsExpandTrigger = "<tab>"
+"let g:UltiSnipsJumpForwardTrigger = "<tab>"
+""定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
+"let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
 "}
 
 " 快速加入修改环绕字符 {
@@ -429,7 +429,7 @@ nmap <F4> :cn<cr>
 nmap <F3> :cp<cr>
 "}"
 
-" 具体语言语法高亮 { 
+" 具体语言语法高亮 {
 " for python.vim syntax highlight
 Bundle 'hdima/python-syntax'
 let python_highlight_all = 1
@@ -571,10 +571,10 @@ function! Do_GenCsTag()
         if filereadable("cscope.out")
             execute "cs add cscope.out"
         else
-           let cscope_file=findfile("cscope.out", ".;")  
-           let cscope_pre=matchstr(cscope_file, ".*/")  
-           if !empty(cscope_file) && filereadable(cscope_file)  
-               exe "cs add" cscope_file cscope_pre  
+           let cscope_file=findfile("cscope.out", ".;")
+           let cscope_pre=matchstr(cscope_file, ".*/")
+           if !empty(cscope_file) && filereadable(cscope_file)
+               exe "cs add" cscope_file cscope_pre
            endif
         endif
     endif
@@ -585,14 +585,14 @@ function! LoadCscope()
         if (executable("cscope") && has("cscope"))
         	let UpperPath = findfile("cscope.out", ".;")
         	if (!empty(UpperPath))
-        		let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)	
+        		let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)
         		if (!empty(path))
         			let s:CurrentDir = getcwd()
-        			let direct = strpart(s:CurrentDir, 0, 2) 
+        			let direct = strpart(s:CurrentDir, 0, 2)
         			let s:FullPath = direct . path
         			let s:AFullPath = globpath(s:FullPath, "cscope.out")
-        			let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath 
-        			execute s:CscopeAddString 
+        			let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath
+        			execute s:CscopeAddString
         		endif
         	endif
         endif
@@ -603,17 +603,18 @@ function! LoadCscope()
          set nocscopeverbose " suppress 'duplicate connection' error
          exe "cs add " . db . " " . path
          set cscopeverbose
-       endif        
+       endif
     endif
 endfunction
 
 "----查找函数、宏、枚举等定义的位置: alt+g
 nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <M-d> :tag 
-nmap <esc>d :tag 
-nmap <M-w> :cs f g 
-nmap <esc>w :cs f g 
+"查找tag，用ctrlP来实现，支持模糊查找
+nmap <M-d> :CtrlPTag<cr>
+nmap <esc>d :CtrlPTag<cr>
+nmap <M-w> :cs f g
+nmap <esc>w :cs f g
 "----查找调用本函数的函数:  alt+s
 nmap <M-s> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :cs find c <C-R>=expand("<cword>")<CR><CR>
