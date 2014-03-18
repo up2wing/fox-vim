@@ -58,6 +58,10 @@ fox-vim
         o.......Open files, directories and bookmarks
         i.......Open selected file in a split window上下分屏
         s.......Open selected file in a new vsplit左右分屏
+### 10、CtrlP
+    ,p  迅速打开工程中的一个文件，祖先目录为带.svn .git目录所在目录。因此需要在工程根目录下建立一个.git目录，否则只搜索打开文件所在目录。
+    ,f  从历史文件中模糊查找
+    alt+d   模糊查找tags
 
 三、vim使用
 ----------------------------------------------
