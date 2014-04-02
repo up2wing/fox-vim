@@ -488,149 +488,49 @@ set tags=tags;
 "set autochdir		"改变vim的当前目录。因为cscope要绝对路径，一般关闭
 " }
 
-" cscope {
-Bundle 'vim-scripts/cscope.vim'
-Bundle 'vim-scripts/autoload_cscope.vim'
-let g:autocscope_menus=0
+" gtags {
+Bundle 'vim-scripts/gtags.vim'
+" }
 
-"set cscope output to quickfix windows
-if has("cscope")
-    set cscopequickfix=s-,c-,g-,i-,t-,e-
-    set csto=1
-    set cst
-    set csverb
-    set cspc=3
-endif
+" cscope {
+"Bundle 'vim-scripts/cscope.vim'
+"Bundle 'vim-scripts/autoload_cscope.vim'
+"let g:autocscope_menus=0
+
+"----查找函数、宏、枚举等定义的位置: alt+g
+nmap <M-g> :Gtags -a <C-R>=expand("<cword>")<CR><CR>
+nmap <esc>g :Gtags -a <C-R>=expand("<cword>")<CR><CR>
+"----查找符号表：alt+d
+nmap <M-d> :Gtags -a 
+nmap <esc>d :Gtags -a 
+"-----查找grep：alt+w
+nmap <M-w> :global -ga 
+nmap <esc>w :global -ga 
+"----查找调用本函数的函数:  alt+s
+nmap <M-s> :Gtags -ra <C-R>=expand("<cword>")<CR><CR>
+nmap <esc>s :Gtags -ra <C-R>=expand("<cword>")<CR><CR>
+"查找C语言符号，即查找函数名、宏、枚举值等出现的地方
+nmap <M-f> :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
+nmap <esc>f :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
 
 "生成cscope数据库、ctags
 map <C-F12> :call Do_GenCsTag()<CR>
 map <F12> :call LoadCscope()<CR>
 function! Do_GenCsTag()
     let dir = getcwd()
-    if filereadable("tags")
-        if(g:iswindows==1)
-            let tagsdeleted=delete(dir."\\"."tags")
-        else
-            let tagsdeleted=delete("./"."tags")
-        endif
-        if(tagsdeleted!=0)
-            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
-            return
-        endif
-    endif
-    if has("cscope")
-        silent! execute "cs kill -1"
-    endif
-    if filereadable("cscope.files")
-        if(g:iswindows==1)
-            let csfilesdeleted=delete(dir."\\"."cscope.files")
-        else
-            let csfilesdeleted=delete("./"."cscope.files")
-        endif
-        if(csfilesdeleted!=0)
-            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
-            return
-        endif
-    endif
-    if filereadable("cscope.out")
-        if(g:iswindows==1)
-            let csoutdeleted=delete(dir."\\"."cscope.out")
-        else
-            let csoutdeleted=delete("./"."cscope.out")
-        endif
-        if(csoutdeleted!=0)
-            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
-            return
-        endif
-    endif
-    if(executable('ctags'))
-        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
-    endif
-
-    "build filenametags for lookupfile
-    silent! execute "!echo -e '!_TAG_FILE_SORTED\t2\t/2=foldcase/' > filenametags"
-    if(g:iswindows==1)
-        silent! execute "!gfind . -not -regex '.*\.\(png\|gif\|svn\|git\)' -type f -printf \"%f\t%p\t1\n\" | gsort -f>> filenametags"
-    else
-        silent! execute "!find . -not -regex '.*\.\(png\|gif\|svn\|git\)' -type f -printf \"%f\t%p\t1\n\" | sort -f>> filenametags"
-    endif
-
-    if(executable('cscope') && has("cscope") )
+    if(executable('gtags'))
         if(g:iswindows!=1)
-            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > gtags.files"
         else
-            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
-        endif
-        if(g:iswindows==0)
-            silent! execute "!cscope -bkq"
-        else
-            " Windows下sort问题，不能使用-q，故只能这样
             silent! execute "!gentags.bat"
         endif
-        execute "normal :"
-        if filereadable("cscope.out")
-            execute "cs add cscope.out"
-        else
-           let cscope_file=findfile("cscope.out", ".;")
-           let cscope_pre=matchstr(cscope_file, ".*/")
-           if !empty(cscope_file) && filereadable(cscope_file)
-               exe "cs add" cscope_file cscope_pre
-           endif
-        endif
+        silent! execute "!gtags"
     endif
 endfunction
 
 function! LoadCscope()
-    if (g:iswindows==1)
-        if (executable("cscope") && has("cscope"))
-        	let UpperPath = findfile("cscope.out", ".;")
-        	if (!empty(UpperPath))
-        		let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)
-        		if (!empty(path))
-        			let s:CurrentDir = getcwd()
-        			let direct = strpart(s:CurrentDir, 0, 2)
-        			let s:FullPath = direct . path
-        			let s:AFullPath = globpath(s:FullPath, "cscope.out")
-        			let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath
-        			execute s:CscopeAddString
-        		endif
-        	endif
-        endif
-    else
-       let db = findfile("cscope.out", ".;")
-       if (!empty(db))
-         let path = strpart(db, 0, match(db, "/cscope.out$"))
-         set nocscopeverbose " suppress 'duplicate connection' error
-         exe "cs add " . db . " " . path
-         set cscopeverbose
-       endif
-    endif
+    silent! execute "!global -u"
 endfunction
-
-"----查找函数、宏、枚举等定义的位置: alt+g
-nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <esc>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-"查找tag，用ctrlP来实现，支持模糊查找
-nmap <M-d> :CtrlPTag<cr>
-nmap <esc>d :CtrlPTag<cr>
-nmap <M-w> :cs f g
-nmap <esc>w :cs f g
-"----查找调用本函数的函数:  alt+s
-nmap <M-s> :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <esc>s :cs find c <C-R>=expand("<cword>")<CR><CR>
-"查找C语言符号，即查找函数名、宏、枚举值等出现的地方
-nmap <M-f> :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <esc>f :cs find s <C-R>=expand("<cword>")<CR><CR>
-"查找egrep模式，相当于egrep功能，但查找速度快多了
-nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-"----查找指定的字符串:  alt+f
-nmap <C-@>s :cs find t <C-R>=expand("<cword>")<CR><CR>
-"查找并打开文件，类似vim的find功能
-nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-"查找包含本文件的文件
-nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-"查找本函数调用的函数
-nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " }
 
@@ -679,65 +579,65 @@ Bundle 'vim-scripts/a.vim'
 " }
 
 " lookupfile setting {
-Bundle 'vim-scripts/genutils'
-Bundle 'vim-scripts/lookupfile'
-let g:LookupFile_MinPatLength = 2
-let g:LookupFile_PreserveLastPattern = 0
-let g:LookupFile_PreservePatternHistory = 0
-let g:LookupFile_AlwaysAcceptFirst = 1
-let g:LookupFile_AllowNewFiles = 0
-let g:LookupFile_UsingSpecializedTags = 1
-let g:LookupFile_Bufs_LikeBufCmd = 0
-let g:LookupFile_ignorecase = 1
-let g:LookupFile_smartcase = 1
-if filereadable("./filenametag")
-    let g:LookupFile_TagExpr = '"./filenametags"'
-endif
+"Bundle 'vim-scripts/genutils'
+"Bundle 'vim-scripts/lookupfile'
+"let g:LookupFile_MinPatLength = 2
+"let g:LookupFile_PreserveLastPattern = 0
+"let g:LookupFile_PreservePatternHistory = 0
+"let g:LookupFile_AlwaysAcceptFirst = 1
+"let g:LookupFile_AllowNewFiles = 0
+"let g:LookupFile_UsingSpecializedTags = 1
+"let g:LookupFile_Bufs_LikeBufCmd = 0
+"let g:LookupFile_ignorecase = 1
+"let g:LookupFile_smartcase = 1
+"if filereadable("./filenametag")
+    "let g:LookupFile_TagExpr = '"./filenametags"'
+"endif
 
-" lookup file with ignore case
-function! LookupFile_IgnoreCaseFunc(pattern)
-    let _tags = &tags
-    try
-        let &tags = eval(g:LookupFile_TagExpr)
-        let newpattern = '\c' . a:pattern
-        let tags = taglist(newpattern)
-    catch
-        echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
-        return ""
-    finally
-        let &tags = _tags
-    endtry
-    " Show the matches for what is typed so far.
-    let files = map(tags, 'v:val["filename"]')
-    return files
-endfunction
-let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc'
+"" lookup file with ignore case
+"function! LookupFile_IgnoreCaseFunc(pattern)
+    "let _tags = &tags
+    "try
+        "let &tags = eval(g:LookupFile_TagExpr)
+        "let newpattern = '\c' . a:pattern
+        "let tags = taglist(newpattern)
+    "catch
+        "echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
+        "return ""
+    "finally
+        "let &tags = _tags
+    "endtry
+    "" Show the matches for what is typed so far.
+    "let files = map(tags, 'v:val["filename"]')
+    "return files
+"endfunction
+"let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc'
 
-"映射LookupFile为,lk-----搜索文件
-nmap <silent> <leader>lk :LUTags<cr>
-"映射LUBufs为,ll------搜索Buffer
-nmap <silent> <leader>ll :LUBufs<cr>
-"映射LUWalk为,lw-----搜索目录
-nmap <silent> <leader>lw :LUWalk<cr>
+""映射LookupFile为,lk-----搜索文件
+"nmap <silent> <leader>lk :LUTags<cr>
+""映射LUBufs为,ll------搜索Buffer
+"nmap <silent> <leader>ll :LUBufs<cr>
+""映射LUWalk为,lw-----搜索目录
+"nmap <silent> <leader>lw :LUWalk<cr>
 " }
 
 " netrw setting {
-Bundle 'vim-scripts/netrw.vim'
-let g:netrw_winsize = 30
-" ,fe打开文件浏览器
-nmap <silent> <leader>fe :Sexplore!<cr>
+"Bundle 'vim-scripts/netrw.vim'
+"let g:netrw_winsize = 30
+"" ,fe打开文件浏览器
+"nmap <silent> <leader>fe :Sexplore!<cr>
 " }
 
 " BufExplorer {
-Bundle 'corntrace/bufexplorer'
-let g:bufExplorerDefaultHelp=0       " Do not show default help.
-let g:bufExplorerShowRelativePath=1  " Show relative paths.
-let g:bufExplorerSortBy='mru'        " Sort by most recently used.
-let g:bufExplorerSplitRight=0        " Split left.
-let g:bufExplorerSplitVertical=1     " Split vertically.
-let g:bufExplorerSplitVertSize = 30  " Split width
-let g:bufExplorerUseCurrentWindow=1  " Open in new window.
-autocmd BufWinEnter \[Buf\ List\] setl nonumber
+"Bundle 'corntrace/bufexplorer'
+"let g:bufExplorerDefaultHelp=0       " Do not show default help.
+"let g:bufExplorerShowRelativePath=1  " Show relative paths.
+"let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+"let g:bufExplorerSplitRight=0        " Split left.
+"let g:bufExplorerSplitVertical=1     " Split vertically.
+"let g:bufExplorerSplitVertSize = 30  " Split width
+"let g:bufExplorerUseCurrentWindow=1  " Open in new window.
+"autocmd BufWinEnter \[Buf\ List\] setl nonumber
 " }
 
 filetype plugin indent on     " vbundle required!

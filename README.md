@@ -20,18 +20,19 @@ fox-vim
 ---------------------------------------
 ### 1、tags
     将ctags58目录中的exe文件拷贝到vim.exe所在目录。
-    Ctrl+F12即可生成tags,并自动添加数据库
-        Alt+d                   "打开符号表
-        Alt+s                   "通过cscope查找引用
-        Alt+f                   "搜索文本
-
         :tag {ident}            "跳转到指定的标签
         :tags                   "显示标签栈
         CTRL-]                  "跳转到当前光标下的标签
         CTRL-T                  "跳到标签栈中较早的标签
-### 2、LookupFiles
-    首先安装genutils，然后安装lookupfiles插件。
-    按”<F5>“或输入”:LookupFile“在当前窗口上方打开一个lookupfile小窗口。
+### 2、GNU Global
+    从GNU官网http://www.gnu.org/software/global/download.html下载压缩包，然后将bin下的文件拷贝到gvim所在目录（以Windows为例）。
+    映射快捷键->->->->
+        Ctrl+F12即可生成tags,并自动添加数据库
+        F12自动更新数据库
+        Alt+d                   "打开符号表，支持POSIX正则；按Tab自动补全；
+        Alt+s                   "查找引用
+        Alt+f                   "搜索字符串
+        Alt+w                   “grep查找
 ### 3、QuickFix窗口
     ,sf     "快速打开QuickFix窗口
     f3/F4   "向前/前后切换
@@ -61,7 +62,6 @@ fox-vim
 ### 10、CtrlP
     ,p  迅速打开工程中的一个文件，祖先目录为带.svn .git目录所在目录。因此需要在工程根目录下建立一个.git目录，否则只搜索打开文件所在目录。
     ,f  从历史文件中模糊查找
-    alt+d   模糊查找tags
 
 三、vim使用
 ----------------------------------------------
@@ -90,6 +90,8 @@ fox-vim
         修改vimrc_example.vim文件
     2）修改了配置后马上生效
         :source $VIM/_vimrc
+### 6、代码常用操作
+    转到局部变量定义    gd
 
 
 
