@@ -305,7 +305,14 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 40
 let g:rbpt_loadcmd_toggle = 0
-map <F2> :RainbowParenthesesToggle<CR>
+
+map <F2> :call UpdateRainbow()<CR>
+function! UpdateRainbow()
+    silent! execute "RainbowParenthesesToggle"
+    silent! execute "RainbowParenthesesLoadRound"
+    silent! execute "RainbowParenthesesLoadSquare"
+    silent! execute "RainbowParenthesesLoadBraces"
+endfunction
 "au VimEnter * RainbowParenthesesToggle
 "au Syntax * RainbowParenthesesLoadRound
 "au Syntax * RainbowParenthesesLoadSquare
@@ -501,15 +508,18 @@ nmap <esc>w :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
 "nmap <M-w> :global -ga 
 "nmap <esc>w :global -ga 
 "----查找调用本函数的函数:  alt+s
-nmap <M-s> :Gtags -ra <C-R>=expand("<cword>")<CR><CR>
-nmap <esc>s :Gtags -ra <C-R>=expand("<cword>")<CR><CR>
+nmap <M-s> :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
+nmap <esc>s :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
 "查找C语言符号，即查找函数名、宏、枚举值等出现的地方
 nmap <M-f> :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>f :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
 
 "生成cscope数据库、ctags
 map <C-F12> :call Do_GenCsTag()<CR>
-map <F12> :call LoadCscope()<CR>
+map <F12> :call UpdateTags()<CR>
+"保存文件后自动更新GNU Global
+au BufWritePost *.c, *.cpp, *.h, *py call UpdateTags()
+
 function! Do_GenCsTag()
     let dir = getcwd()
     if(executable('gtags'))
@@ -522,10 +532,9 @@ function! Do_GenCsTag()
     endif
 endfunction
 
-function! LoadCscope()
+function! UpdateTags()
     silent! execute "!global -u"
 endfunction
-
 " }
 
 " 标签导航 {

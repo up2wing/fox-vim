@@ -36,7 +36,7 @@ fox-vim
 ### 4、rainbow_parentheses
     高亮显示匹配大括号、小括号等。不知道为什么我的配置文件自动载入不生效，按F2手动生效:(
 ### 5、tagbar
-    比TagList在面向对象语言时看起来更舒服些
+    比TagList在面向对象语言时看起来更舒服些, 需要ctags支持。下载CTags到gvim.exe所在目录。
     F9打开Tagbar窗口.
 ### 6、Easymotion
     快速移动插件
