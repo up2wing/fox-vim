@@ -218,8 +218,8 @@
     let g:solarized_visibility="normal"
 
     " c++ syntax highlight
-    Bundle 'octol/vim-cpp-enhanced-highlight'
-    Bundle 'vim-scripts/STL-Syntax'
+"    Bundle 'octol/vim-cpp-enhanced-highlight'
+    "Bundle 'vim-scripts/STL-Syntax'
 "}
 
 " 导航 {
@@ -280,8 +280,6 @@ Bundle 'Lokaltog/vim-powerline'
 "let g:Powerline_symbols = 'unicode'
 
 Bundle 'vim-scripts/Mark'
-"nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
-   " nmap <unique> <silent> <leader>m <Plug>MarkSet
 nmap <M-e> <Plug>MarkSet
 nmap <esc>e <Plug>MarkSet
 
@@ -307,6 +305,11 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 40
 let g:rbpt_loadcmd_toggle = 0
+map <F2> :RainbowParenthesesToggle<CR>
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
 
 "代码排版缩进标识
 Bundle 'Yggdroot/indentLine'
@@ -481,22 +484,11 @@ Bundle 'scrooloose/nerdcommenter'
 let NERDShutUp=1
 " }
 
-" tags {
-Bundle 'vim-scripts/ctags.vim'
-"首先在当前目录中寻找tags，找不到向父目录中找，一直递归
-set tags=tags;
-"set autochdir		"改变vim的当前目录。因为cscope要绝对路径，一般关闭
-" }
-
 " gtags {
 Bundle 'vim-scripts/gtags.vim'
 " }
 
-" cscope {
-"Bundle 'vim-scripts/cscope.vim'
-"Bundle 'vim-scripts/autoload_cscope.vim'
-"let g:autocscope_menus=0
-
+" GNU Global {
 "----查找函数、宏、枚举等定义的位置: alt+g
 nmap <M-g> :Gtags -a <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>g :Gtags -a <C-R>=expand("<cword>")<CR><CR>
@@ -504,8 +496,10 @@ nmap <esc>g :Gtags -a <C-R>=expand("<cword>")<CR><CR>
 nmap <M-d> :Gtags -a 
 nmap <esc>d :Gtags -a 
 "-----查找grep：alt+w
-nmap <M-w> :global -ga 
-nmap <esc>w :global -ga 
+nmap <M-w> :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
+nmap <esc>w :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
+"nmap <M-w> :global -ga 
+"nmap <esc>w :global -ga 
 "----查找调用本函数的函数:  alt+s
 nmap <M-s> :Gtags -ra <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :Gtags -ra <C-R>=expand("<cword>")<CR><CR>
@@ -540,23 +534,6 @@ nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_left = 1
 let g:tagbar_sort = 0
-" }
-
-" tag list {
-" 用tagbar代替，面向对象语言支持更好
-"Bundle 'vim-scripts/taglist.vim'
-"if g:iswindows==1                "设定windows系统中ctags程序的位置
-    "let Tlist_Ctags_Cmd = 'ctags'
-"elseif g:iswindows==0              "设定linux系统中ctags程序的位置
-    "let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-"endif
-"let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
-"let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
-"let Tlist_Use_Right_Window = 0        "在右侧窗口中显示taglist窗
-"let Tlist_File_Fold_Auto_Close=1        "让当前不被编辑的文件的方法列表自动折叠起来
-
-""映射F8为Taglist
-"map <silent> <F8> :TlistToggle<cr>
 " }
 
 " Alternate 头文件切换 {
