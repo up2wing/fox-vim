@@ -499,14 +499,14 @@ Bundle 'vim-scripts/gtags.vim'
 "----查找函数、宏、枚举等定义的位置: alt+g
 nmap <M-g> :Gtags -a <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>g :Gtags -a <C-R>=expand("<cword>")<CR><CR>
-"----查找符号表：alt+d
-nmap <M-d> :Gtags -a 
-nmap <esc>d :Gtags -a 
+"----查找符号表：alt+d: -i为不区分大小写；-a为显示绝对路径
+nmap <M-d> :Gtags -ia 
+nmap <esc>d :Gtags -ia 
 "-----查找grep：alt+w
-nmap <M-w> :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
-nmap <esc>w :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
-"nmap <M-w> :global -ga 
-"nmap <esc>w :global -ga 
+"nmap <M-w> :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
+"nmap <esc>w :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
+nmap <M-w> :global -ga 
+nmap <esc>w :global -ga 
 "----查找调用本函数的函数:  alt+s
 nmap <M-s> :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
