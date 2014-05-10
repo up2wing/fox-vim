@@ -217,6 +217,9 @@
     let g:solarized_contrast="normal"
     let g:solarized_visibility="normal"
 
+    "终端下（putty）打开这个选项，可以让颜色显示
+    "set t_Co=256
+
     " c++ syntax highlight
 "    Bundle 'octol/vim-cpp-enhanced-highlight'
     "Bundle 'vim-scripts/STL-Syntax'
@@ -529,6 +532,11 @@ function! Do_GenCsTag()
             silent! execute "!gentags.bat"
         endif
         silent! execute "!gtags"
+
+        if(executable('ctags'))
+            silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        endif
+
     endif
 endfunction
 

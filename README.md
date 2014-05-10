@@ -88,6 +88,9 @@ fox-vim
         endif
     2）修改了配置后马上生效
         :source $VIM/_vimrc
+    3）在终端putty下面使用时，颜色显示正常
+        set t_Co=256
+        
 ### 5、代码常用操作
     转到局部变量定义    gd
 
