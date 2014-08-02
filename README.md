@@ -40,12 +40,17 @@ fox-vim
     F9打开Tagbar窗口.
 ### 6、Easymotion
     快速移动插件
-    ,,f[x]  快速移动到x
+    ,,w    跳转到某单词
+    ,,f    跳转到以某字母开头的单词
+
 ### 7、NERD_commenter
     自动注释工具
-    ,cc     "基本注释
-    ,cm     "添加多行注释；
-    ,cu     "取消注释
+    ,ca    在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
+    ,cc    注释当前行
+    ,cs    以”性感”的方式注释
+    ,cA    在当前行尾添加注释符，并进入Insert模式
+    ,cu    取消注释
+
 ### 8、sessionman
     将session保存、恢复
 ### 9、 nerdtree
@@ -62,8 +67,16 @@ fox-vim
         i.......Open selected file in a split window上下分屏
         s.......Open selected file in a new vsplit左右分屏
 ### 10、CtrlP
-    ,p  迅速打开工程中的一个文件，祖先目录为带.svn .git目录所在目录。因此需要在工程根目录下建立一个.git目录，否则只搜索打开文件所在目录。
-    ,f  从历史文件中模糊查找
+    在项目根目录中建立一个.git目录，ctrlp每次搜索即从根目录开始查找
+    如要修改根目录标志，可以修改g:ctrlp_root_markers变量。绑定快捷键：
+        ,p  迅速打开工程中的一个文件，祖先目录为带.svn .git目录所在目录。因此需要在工程根目录下建立一个.git目录，否则只搜索打开文件所在目录。
+        ,f  从历史文件中模糊查找
+    ctrlp扩展ctrlp-funky
+        ,ff    模糊查找本文件内的函数
+
+### 11、FixWhiteSpace
+    ,space    消除代码中的空格
+
 
 三、vim使用
 ----------------------------------------------
@@ -76,8 +89,7 @@ fox-vim
 ### 3、常用操作
     lb/le/lr    到达行尾/行首/首个不为空的单词
     ,y          将选中文本复制到剪贴板
-    ,p          将剪贴板复制到vim
-    ,f          打开历史文件
+    gd          转到局部变量定义
 ### 4、常用操作
     1）禁止生成～备份文件
         修改vimrc_example.vim文件，将下面几行注释掉
@@ -86,13 +98,20 @@ fox-vim
         else
           set backup		" keep a backup file
         endif
+
+        补记：
+        这个最好还是不要注释掉，否则再次打开文件不能回到上次打开的位置.
+        本vim配置将备份文件放在~/vimbackupfile，Windows下对应vim安装目录，例如：d:\program files\vim。
+
     2）修改了配置后马上生效
         :source $VIM/_vimrc
-    3）在终端putty下面使用时，颜色显示正常
+    3）在终端putty下面使用时
         set t_Co=256
-        
-### 5、代码常用操作
-    转到局部变量定义    gd
+        配置putty的solarized配色，下载这个工程，导入注册表即可。
+        https://github.com/brantb/solarized/tree/master/putty-colors-solarized
+    4）粘贴时防止自动缩进
+        set pastetoggle=<F8>
+        粘贴之前，按下F8。粘贴之后，再次按下F8。
 
 
 

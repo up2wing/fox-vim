@@ -59,12 +59,15 @@
         nmap <C-p> <C-y>
         " 定义快捷键到行首和行尾
         nmap lb 0
-        nmap le $
-        nmap lr ^
+        nmap lr $
+        nmap le ^
+        nmap lt %
         " 设置快捷键将选中文本块复制至系统剪贴板
         vnoremap <Leader>y "+y
         " 设置快捷键将系统剪贴板内容粘贴至 vim
-        nmap <Leader>p "+p
+        "nmap <Leader>p "+p
+        "插入时间
+        :nnoremap <F5> "=strftime("%F")<CR>gP"
     " }
 
     " history存储长度。{
@@ -113,7 +116,12 @@
         set autoindent           " always set autoindenting on
         " never add copyindent, case error   " copy the previous indentation on autoindenting
 
-        set nobackup          "不生成~备份文件(gvim需要同时修改vimrc_example.vim)
+        "set nobackup          "不生成~备份文件(gvim需要同时修改vimrc_example.vim)
+        set backup
+        set backupdir=~/vimbackupfile
+
+        autocmd BufReadPost * exe "normal! g`\""
+
         set nocompatible      "关闭vi兼容模式，避免引发问题
         set autoread          " 文件修改之后自动载入。
         set noswapfile
@@ -196,8 +204,8 @@
         "set rtp+=~/.vim/bundle/vundle/
 "        call vundle#rc('$VIM/vimfiles/bundle/')
 "    else
-        set rtp+=$VIM/vimfiles/bundle/vundle/
-        call vundle#rc('$VIM/vimfiles/bundle/')
+        set rtp+=~/.vim/bundle/vundle/
+        call vundle#rc()
 "    endif
 
     " original repos on github
@@ -211,14 +219,16 @@
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'vim-scripts/Lucius'
     Bundle 'tomasr/molokai'
-    colorscheme solarized     "设置颜色主题
+    set t_Co=256
     set background=dark
+    if !has('gui_running')
+        let g:solarized_termcolors=&t_Co
+        let g:solarized_termtrans=1
+    endif
+    colorscheme solarized     "darkburn     "设置颜色主题
     let g:solarized_termtrans=1
     let g:solarized_contrast="normal"
     let g:solarized_visibility="normal"
-
-    "终端下（putty）打开这个选项，可以让颜色显示
-    "set t_Co=256
 
     " c++ syntax highlight
 "    Bundle 'octol/vim-cpp-enhanced-highlight'
@@ -242,6 +252,26 @@ Bundle 'vim-scripts/grep.vim'
 nnoremap <silent> <F3> :Grep<CR>
 "}
 
+" Easygrep{
+Bundle 'dkprice/vim-easygrep'
+"}
+
+nnoremap <silent> <F3> :Grep<CR>
+
+"创建新文件时自动添加文件注释
+autocmd BufNewFile *.[ch],*.hpp,*.cpp,*.py,*.sh exec ":call SetComment()"
+function! SetComment()
+    call setline(1,"/*===============================================================")
+    call append(line("."),   "*   Copyright (C) ".strftime("%Y")." All rights reserved.")
+    call append(line(".")+1, "*   ")
+    call append(line(".")+2, "*   FileName：".expand("%:t"))
+    call append(line(".")+3, "*   Author：WangYi")
+    call append(line(".")+4, "*   Date： ".strftime("%Y-%m-%d"))
+    call append(line(".")+5, "*   Description：")
+    call append(line(".")+6, "*")
+    call append(line(".")+7, "================================================================*/")
+endfunction
+
 " minibufferexpl {
 "    Bundle 'fholgado/minibufexpl.vim'
     "let g:miniBufExplMapWindowNavVim = 1
@@ -259,20 +289,27 @@ Bundle 'kien/ctrlp.vim'
     let g:ctrlp_map = '<leader>p'
     let g:ctrlp_cmd = 'CtrlP'
     map <leader>f :CtrlPMRU<CR>
-    "set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
         \ }
     "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-    let g:ctrlp_working_path_mode='rw'  "设置工作目录为最近的包括.git, .svn目录的目录
+    let g:ctrlp_working_path_mode='ra'  "设置工作目录为最近的包括.git, .svn目录的目录
     let g:ctrlp_match_window_bottom=1
     let g:ctrlp_max_height=15
     let g:ctrlp_match_window_reversed=0
     let g:ctrlp_mruf_max=500
     let g:ctrlp_follow_symlinks=1
+    let g:ctrlp_regexp=1
+    let g:ctrlp_root_markers=['.git']
     let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
                                  \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+
+"ctrlp扩展，可以搜索当前文件的函数
+Bundle 'tacahiroy/ctrlp-funky'
+    let g:ctrlp_extensions = ['funky']
+    nnoremap <Leader>ff :CtrlPFunky<Cr>
 "}
 
 " 显示增强 {
@@ -508,8 +545,8 @@ nmap <esc>d :Gtags -ia
 "-----查找grep：alt+w
 "nmap <M-w> :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
 "nmap <esc>w :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
-nmap <M-w> :global -ga 
-nmap <esc>w :global -ga 
+nmap <M-w> :Gtags -ga
+nmap <esc>w :Gtags -ga
 "----查找调用本函数的函数:  alt+s
 nmap <M-s> :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
@@ -517,11 +554,18 @@ nmap <esc>s :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
 nmap <M-f> :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>f :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
 
+"查找tag，用ctrlP来实现，支持模糊查找
+"nmap <M-d> :CtrlPTag<cr>
+"nmap <esc>d :CtrlPTag<cr>
+
 "生成cscope数据库、ctags
 map <C-F12> :call Do_GenCsTag()<CR>
-map <F12> :call UpdateTags()<CR>
+"map <F12> :call UpdateTags()<CR>
 "保存文件后自动更新GNU Global
-au BufWritePost *.c, *.cpp, *.h, *py call UpdateTags()
+au BufWritePost *.cpp call UpdateTags(expand('<afile>'))
+au BufWritePost *.c call UpdateTags(expand('<afile>'))
+au BufWritePost *.h call UpdateTags(expand('<afile>'))
+au BufWritePost *py call UpdateTags(expand('<afile>'))
 
 function! Do_GenCsTag()
     let dir = getcwd()
@@ -531,17 +575,17 @@ function! Do_GenCsTag()
         else
             silent! execute "!gentags.bat"
         endif
-        silent! execute "!gtags"
-
-        if(executable('ctags'))
-            silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
-        endif
-
+        "silent! execute "!gtags"
+        "silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
     endif
 endfunction
 
-function! UpdateTags()
-    silent! execute "!global -u"
+"function! UpdateTags()
+    "silent! execute "!global -u"
+"endfunction
+function! UpdateTags(f)
+    let dir = fnamemodify(a:f, ':p:h')
+    exe 'silent !cd ' . dir . ' && global -u &> /dev/null &'
 endfunction
 " }
 
@@ -644,5 +688,7 @@ if g:iswindows==1
     "source $VIMRUNTIME/mswin.vim
     behave mswin
 endif
-" }
 
+set backup
+set backupdir=~/vimbackupfile
+" }
