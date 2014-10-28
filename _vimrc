@@ -62,12 +62,14 @@
         nmap lr $
         nmap le ^
         nmap lt %
+        nmap lf *
         " 设置快捷键将选中文本块复制至系统剪贴板
         vnoremap <Leader>y "+y
         " 设置快捷键将系统剪贴板内容粘贴至 vim
         "nmap <Leader>p "+p
-        "插入时间
-        :nnoremap <F5> "=strftime("%F")<CR>gP"
+ 
+        "粘贴时不会自动缩进，以免格式错乱. 在粘贴前按下F8,粘贴后再次按下F8
+        set pastetoggle=<F8>
     " }
 
     " history存储长度。{
@@ -83,7 +85,7 @@
 
     " 折叠{
         set foldenable          " 开始折叠
-        set foldmethod=syntax   " 设置折叠方式(indent\syntax\marker\expr)
+        set foldmethod=indent   " 设置折叠方式(indent\syntax\marker\expr)
         set foldcolumn=0        " 设置折叠区域的宽度
         setlocal foldlevel=1    " 设置折叠层数为
         set foldlevelstart=99   " 打开文件是默认不折叠代码
@@ -117,8 +119,10 @@
         " never add copyindent, case error   " copy the previous indentation on autoindenting
 
         "set nobackup          "不生成~备份文件(gvim需要同时修改vimrc_example.vim)
+        if g:iswindows==0
         set backup
-        set backupdir=~/vimbackupfile
+            set backupdir=$VIMRUNTIME/vimbackupfile
+        endif
 
         autocmd BufReadPost * exe "normal! g`\""
 
@@ -200,13 +204,13 @@
     filetype off                   " required!
 
     " 此处规定Vundle的路径
-"    if(g:iswindows==0)
-        "set rtp+=~/.vim/bundle/vundle/
-"        call vundle#rc('$VIM/vimfiles/bundle/')
-"    else
+    if(g:iswindows==0)
         set rtp+=~/.vim/bundle/vundle/
         call vundle#rc()
-"    endif
+    else
+        set rtp+=$VIM/vimfiles/bundle/vundle/
+        call vundle#rc('$VIM/vimfiles/bundle/')
+    endif
 
     " original repos on github
     " github上的用户写的插件，使用这种用户名+repo名称的方式
@@ -229,6 +233,7 @@
     let g:solarized_termtrans=1
     let g:solarized_contrast="normal"
     let g:solarized_visibility="normal"
+    :nnoremap <F5> "=strftime("%F")<CR>gP"
 
     " c++ syntax highlight
 "    Bundle 'octol/vim-cpp-enhanced-highlight'
@@ -255,8 +260,6 @@ nnoremap <silent> <F3> :Grep<CR>
 " Easygrep{
 Bundle 'dkprice/vim-easygrep'
 "}
-
-nnoremap <silent> <F3> :Grep<CR>
 
 "创建新文件时自动添加文件注释
 autocmd BufNewFile *.[ch],*.hpp,*.cpp,*.py,*.sh exec ":call SetComment()"
@@ -288,6 +291,7 @@ endfunction
 Bundle 'kien/ctrlp.vim'
     let g:ctrlp_map = '<leader>p'
     let g:ctrlp_cmd = 'CtrlP'
+    "在历史文件中模糊查找
     map <leader>f :CtrlPMRU<CR>
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
     let g:ctrlp_custom_ignore = {
@@ -295,14 +299,14 @@ Bundle 'kien/ctrlp.vim'
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
         \ }
     "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-    let g:ctrlp_working_path_mode='ra'  "设置工作目录为最近的包括.git, .svn目录的目录
+    let g:ctrlp_working_path_mode='rw'  "设置工作目录为最近的包括.git, .svn目录的目录
+    let g:ctrlp_root_markers=['.git']   "在项目根目录中建立一个.git的空目录，ctrlp即从根目录开始搜索
     let g:ctrlp_match_window_bottom=1
     let g:ctrlp_max_height=15
     let g:ctrlp_match_window_reversed=0
-    let g:ctrlp_mruf_max=500
+    let g:ctrlp_mruf_max=5000
     let g:ctrlp_follow_symlinks=1
     let g:ctrlp_regexp=1
-    let g:ctrlp_root_markers=['.git']
     let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
                                  \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 
@@ -575,8 +579,8 @@ function! Do_GenCsTag()
         else
             silent! execute "!gentags.bat"
         endif
-        "silent! execute "!gtags"
-        "silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        silent! execute "!gtags"
+        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
     endif
 endfunction
 
@@ -689,6 +693,8 @@ if g:iswindows==1
     behave mswin
 endif
 
+if g:iswindows==0
 set backup
 set backupdir=~/vimbackupfile
+endif
 " }
