@@ -323,9 +323,9 @@ Bundle 'Lokaltog/vim-powerline'
 "let g:Powerline_symbols = 'fancy'
 "let g:Powerline_symbols = 'unicode'
 
-Bundle 'vim-scripts/Mark'
-nmap <M-e> <Plug>MarkSet
-nmap <esc>e <Plug>MarkSet
+Bundle 'vim-scripts/Mark--Karkat' 
+nmap <M-e> <leader>m
+nmap <esc>e <leader>m
 
 "À¨ºÅÏÔÊ¾ÔöÇ¿
 Bundle 'kien/rainbow_parentheses.vim'
@@ -589,7 +589,11 @@ endfunction
 "endfunction
 function! UpdateTags(f)
     let dir = fnamemodify(a:f, ':p:h')
+if(g:iswindows!=1) 
     exe 'silent !cd ' . dir . ' && global -u &> /dev/null &'
+else 
+exe 'silent !cd ' . dir . ' && global -u' 
+endif 
 endfunction
 " }
 
