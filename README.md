@@ -1,4 +1,4 @@
-fox-vim
+﻿fox-vim
 =====================================
     " Author: WangYi
     " Version: 1.2
@@ -40,7 +40,8 @@ fox-vim
     F9打开Tagbar窗口.
 ### 6、Easymotion
     快速移动插件
-    ,,w    跳转到某单词
+    ,s    向前跳转到某单词
+    ,b    向后跳转到某单词
     ,,f    跳转到以某字母开头的单词
 
 ### 7、NERD_commenter

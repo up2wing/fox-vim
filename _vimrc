@@ -51,9 +51,6 @@
 " Common Setting {
     "用空格键来开关折叠 {
         "nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-        "两次o换行而不用进入编辑模式
-        noremap go o<esc>
-        noremap gO O<esc>
         "仿照emacs滚动
         nmap <C-n> <C-e>
         nmap <C-p> <C-y>
@@ -328,35 +325,35 @@ nmap <M-e> <leader>m
 nmap <esc>e <leader>m
 
 "括号显示增强
-Bundle 'kien/rainbow_parentheses.vim'
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 40
-let g:rbpt_loadcmd_toggle = 0
+"Bundle 'kien/rainbow_parentheses.vim'
+"let g:rbpt_colorpairs = [
+"\ ['brown', 'RoyalBlue3'],
+"\ ['Darkblue', 'SeaGreen3'],
+"\ ['darkgray', 'DarkOrchid3'],
+"\ ['darkgreen', 'firebrick3'],
+"\ ['darkcyan', 'RoyalBlue3'],
+"\ ['darkred', 'SeaGreen3'],
+"\ ['darkmagenta', 'DarkOrchid3'],
+"\ ['brown', 'firebrick3'],
+"\ ['gray', 'RoyalBlue3'],
+"\ ['black', 'SeaGreen3'],
+"\ ['darkmagenta', 'DarkOrchid3'],
+"\ ['Darkblue', 'firebrick3'],
+"\ ['darkgreen', 'RoyalBlue3'],
+"\ ['darkcyan', 'SeaGreen3'],
+"\ ['darkred', 'DarkOrchid3'],
+"\ ['red', 'firebrick3'],
+"\ ]
+"let g:rbpt_max = 40
+"let g:rbpt_loadcmd_toggle = 0
 
-map <F2> :call UpdateRainbow()<CR>
-function! UpdateRainbow()
-    silent! execute "RainbowParenthesesToggle"
-    silent! execute "RainbowParenthesesLoadRound"
-    silent! execute "RainbowParenthesesLoadSquare"
-    silent! execute "RainbowParenthesesLoadBraces"
-endfunction
+"map <F2> :call UpdateRainbow()<CR>
+"function! UpdateRainbow()
+"silent! execute "RainbowParenthesesToggle"
+"silent! execute "RainbowParenthesesLoadRound"
+"silent! execute "RainbowParenthesesLoadSquare"
+"silent! execute "RainbowParenthesesLoadBraces"
+"endfunction
 "au VimEnter * RainbowParenthesesToggle
 "au Syntax * RainbowParenthesesLoadRound
 "au Syntax * RainbowParenthesesLoadSquare
@@ -376,6 +373,8 @@ map <leader><space> :FixWhitespace<cr>
 " 快速移动 {
 "更高效的移动 ,, + w/fx
 Bundle 'Lokaltog/vim-easymotion'
+map <leader>s <Plug>(easymotion-w)
+map <leader>b <Plug>(easymotion-b)
 Bundle 'vim-scripts/matchit.zip'
 " }
 
