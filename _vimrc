@@ -49,73 +49,73 @@
 " }
 
 " Common Setting {
-    "ÓÃ¿Õ¸ñ¼üÀ´¿ª¹ØÕÛµş {
+    "ç”¨ç©ºæ ¼é”®æ¥å¼€å…³æŠ˜å  {
         "nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-        "·ÂÕÕemacs¹ö¶¯
+        "ä»¿ç…§emacsæ»šåŠ¨
         nmap <C-n> <C-e>
         nmap <C-p> <C-y>
-        " ¶¨Òå¿ì½İ¼üµ½ĞĞÊ×ºÍĞĞÎ²
+        " å®šä¹‰å¿«æ·é”®åˆ°è¡Œé¦–å’Œè¡Œå°¾
         nmap lb 0
         nmap lr $
         nmap le ^
         nmap lt %
         nmap lf *
-        " ÉèÖÃ¿ì½İ¼ü½«Ñ¡ÖĞÎÄ±¾¿é¸´ÖÆÖÁÏµÍ³¼ôÌù°å
+        " è®¾ç½®å¿«æ·é”®å°†é€‰ä¸­æ–‡æœ¬å—å¤åˆ¶è‡³ç³»ç»Ÿå‰ªè´´æ¿
         vnoremap <Leader>y "+y
-        " ÉèÖÃ¿ì½İ¼ü½«ÏµÍ³¼ôÌù°åÄÚÈİÕ³ÌùÖÁ vim
+        " è®¾ç½®å¿«æ·é”®å°†ç³»ç»Ÿå‰ªè´´æ¿å†…å®¹ç²˜è´´è‡³ vim
         "nmap <Leader>p "+p
  
-        "Õ³ÌùÊ±²»»á×Ô¶¯Ëõ½ø£¬ÒÔÃâ¸ñÊ½´íÂÒ. ÔÚÕ³ÌùÇ°°´ÏÂF8,Õ³ÌùºóÔÙ´Î°´ÏÂF8
+        "ç²˜è´´æ—¶ä¸ä¼šè‡ªåŠ¨ç¼©è¿›ï¼Œä»¥å…æ ¼å¼é”™ä¹±. åœ¨ç²˜è´´å‰æŒ‰ä¸‹F8,ç²˜è´´åå†æ¬¡æŒ‰ä¸‹F8
         set pastetoggle=<F8>
     " }
 
-    " history´æ´¢³¤¶È¡£{
+    " historyå­˜å‚¨é•¿åº¦ã€‚{
         set history=2000
     " }
 
-    " ÎÄ¼şÀàĞÍ {
-        filetype on                "¼ì²âÎÄ¼şÀàĞÍ
-        filetype indent on         "Õë¶Ô²»Í¬µÄÎÄ¼şÀàĞÍ²ÉÓÃ²»Í¬µÄËõ½ø¸ñÊ½
-        filetype plugin on         "ÔÊĞí²å¼ş
-        filetype plugin indent on  "Æô¶¯×Ô¶¯²¹È«
+    " æ–‡ä»¶ç±»å‹ {
+        filetype on                "æ£€æµ‹æ–‡ä»¶ç±»å‹
+        filetype indent on         "é’ˆå¯¹ä¸åŒçš„æ–‡ä»¶ç±»å‹é‡‡ç”¨ä¸åŒçš„ç¼©è¿›æ ¼å¼
+        filetype plugin on         "å…è®¸æ’ä»¶
+        filetype plugin indent on  "å¯åŠ¨è‡ªåŠ¨è¡¥å…¨
     " }
 
-    " ÕÛµş{
-        set foldenable          " ¿ªÊ¼ÕÛµş
-        set foldmethod=indent   " ÉèÖÃÕÛµş·½Ê½(indent\syntax\marker\expr)
-        set foldcolumn=0        " ÉèÖÃÕÛµşÇøÓòµÄ¿í¶È
-        setlocal foldlevel=1    " ÉèÖÃÕÛµş²ãÊıÎª
-        set foldlevelstart=99   " ´ò¿ªÎÄ¼şÊÇÄ¬ÈÏ²»ÕÛµş´úÂë
-        "set foldclose=all      " ÉèÖÃÎª×Ô¶¯¹Ø±ÕÕÛµş
+    " æŠ˜å {
+        set foldenable          " å¼€å§‹æŠ˜å 
+        set foldmethod=indent   " è®¾ç½®æŠ˜å æ–¹å¼(indent\syntax\marker\expr)
+        set foldcolumn=0        " è®¾ç½®æŠ˜å åŒºåŸŸçš„å®½åº¦
+        setlocal foldlevel=1    " è®¾ç½®æŠ˜å å±‚æ•°ä¸º
+        set foldlevelstart=99   " æ‰“å¼€æ–‡ä»¶æ˜¯é»˜è®¤ä¸æŠ˜å ä»£ç 
+        "set foldclose=all      " è®¾ç½®ä¸ºè‡ªåŠ¨å…³é—­æŠ˜å 
     " }
 
-    " ÆäËü {
-        syntax on          "´ò¿ª¸ßÁÁ
-        set hlsearch       "¸ßÁÁÏÔÊ¾½á¹û
-        set incsearch      "ÔÚÊäÈëÒªËÑË÷µÄÎÄ×ÖÊ±£¬vim»áÊµÊ±Æ¥Åä
-        set ignorecase     " ËÑË÷Ê±ºöÂÔ´óĞ¡Ğ´
-        set showmatch      " ÏÔÊ¾À¨ºÅÅä¶ÔÇé¿ö
+    " å…¶å®ƒ {
+        syntax on          "æ‰“å¼€é«˜äº®
+        set hlsearch       "é«˜äº®æ˜¾ç¤ºç»“æœ
+        set incsearch      "åœ¨è¾“å…¥è¦æœç´¢çš„æ–‡å­—æ—¶ï¼Œvimä¼šå®æ—¶åŒ¹é…
+        set ignorecase     " æœç´¢æ—¶å¿½ç•¥å¤§å°å†™
+        set showmatch      " æ˜¾ç¤ºæ‹¬å·é…å¯¹æƒ…å†µ
         set mat=2          " How many tenths of a second to blink when matching brackets
-        set number         " ÏÔÊ¾ĞĞºÅ
+        set number         " æ˜¾ç¤ºè¡Œå·
         set title          " change the terminal's title
         set novisualbell   " don't beep
         set noerrorbells   " don't beep
-        set vb t_vb=       "È¥µô´íÎóÉùÒô
+        set vb t_vb=       "å»æ‰é”™è¯¯å£°éŸ³
 
         let mapleader = ","     "Set mapleader
 
-        set tabstop=4           " ÉèÖÃTab¼üµÄ¿í¶È        [µÈÍ¬µÄ¿Õ¸ñ¸öÊı]
-        set shiftwidth=4   "×Ô¶¯Ëõ½øµÄ¿í¶È
-        set softtabstop=4       " °´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô 4 ¸ö¿Õ¸ñ
-        set smarttab            " insert tabs on the start of a line according to shiftwidth, not tabstop °´ÍË¸ñ¼üÊ±¿ÉÒÔÒ»´ÎÉ¾µô 4 ¸ö¿Õ¸ñ
-        set expandtab      "ÓÃ¿Õ¸ñ´úÌætab
+        set tabstop=4           " è®¾ç½®Tabé”®çš„å®½åº¦        [ç­‰åŒçš„ç©ºæ ¼ä¸ªæ•°]
+        set shiftwidth=4   "è‡ªåŠ¨ç¼©è¿›çš„å®½åº¦
+        set softtabstop=4       " æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰ 4 ä¸ªç©ºæ ¼
+        set smarttab            " insert tabs on the start of a line according to shiftwidth, not tabstop æŒ‰é€€æ ¼é”®æ—¶å¯ä»¥ä¸€æ¬¡åˆ æ‰ 4 ä¸ªç©ºæ ¼
+        set expandtab      "ç”¨ç©ºæ ¼ä»£æ›¿tab
 
         set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
         set smartindent          "Smart indent
         set autoindent           " always set autoindenting on
         " never add copyindent, case error   " copy the previous indentation on autoindenting
 
-        "set nobackup          "²»Éú³É~±¸·İÎÄ¼ş(gvimĞèÒªÍ¬Ê±ĞŞ¸Ävimrc_example.vim)
+        "set nobackup          "ä¸ç”Ÿæˆ~å¤‡ä»½æ–‡ä»¶(gviméœ€è¦åŒæ—¶ä¿®æ”¹vimrc_example.vim)
         if g:iswindows==0
         set backup
             set backupdir=$VIMRUNTIME/vimbackupfile
@@ -123,10 +123,10 @@
 
         autocmd BufReadPost * exe "normal! g`\""
 
-        set nocompatible      "¹Ø±Õvi¼æÈİÄ£Ê½£¬±ÜÃâÒı·¢ÎÊÌâ
-        set autoread          " ÎÄ¼şĞŞ¸ÄÖ®ºó×Ô¶¯ÔØÈë¡£
+        set nocompatible      "å…³é—­viå…¼å®¹æ¨¡å¼ï¼Œé¿å…å¼•å‘é—®é¢˜
+        set autoread          " æ–‡ä»¶ä¿®æ”¹ä¹‹åè‡ªåŠ¨è½½å…¥ã€‚
         set noswapfile
-        set cursorline        " Í»³öÏÔÊ¾µ±Ç°ĞĞ
+        set cursorline        " çªå‡ºæ˜¾ç¤ºå½“å‰è¡Œ
 
         "create undo file
         set undolevels=1000         " How many undos
@@ -134,11 +134,11 @@
 
         set wildignore=*.swp,*.bak,*.pyc,*.class
 
-        set ruler                 "ÏÔÊ¾µ±Ç°µÄĞĞºÅÁĞºÅ£º
-        set showcmd               "ÔÚ×´Ì¬À¸ÏÔÊ¾ÕıÔÚÊäÈëµÄÃüÁî
+        set ruler                 "æ˜¾ç¤ºå½“å‰çš„è¡Œå·åˆ—å·ï¼š
+        set showcmd               "åœ¨çŠ¶æ€æ æ˜¾ç¤ºæ­£åœ¨è¾“å…¥çš„å‘½ä»¤
         set showmode              " Show current mode
 
-        set scrolloff=7          "j/k ÉÏÏÂ¹ö¶¯,Ê¼ÖÕÔÚÖĞ¼ä
+        set scrolloff=7          "j/k ä¸Šä¸‹æ»šåŠ¨,å§‹ç»ˆåœ¨ä¸­é—´
 
         "insert mode shortcut
         inoremap <C-f> <Right>
@@ -146,21 +146,21 @@
 
         "set winwidth=79
 
-        " ÃüÁîĞĞ£¨ÔÚ×´Ì¬ĞĞÏÂ£©µÄ¸ß¶È£¬Ä¬ÈÏÎª1£¬ÕâÀïÊÇ2
+        " å‘½ä»¤è¡Œï¼ˆåœ¨çŠ¶æ€è¡Œä¸‹ï¼‰çš„é«˜åº¦ï¼Œé»˜è®¤ä¸º1ï¼Œè¿™é‡Œæ˜¯2
         set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
         " Always show the status line
         set laststatus=2
 
     " }
 
-    " ×ÖÌå¼°Íâ¹Û {
-        set guifont=Bitstream_Vera_Sans_Mono:h9.5:cANSI      "×ÖÌåÉèÖÃÎªBitstream
+    " å­—ä½“åŠå¤–è§‚ {
+        set guifont=Bitstream_Vera_Sans_Mono:h9.5:cANSI      "å­—ä½“è®¾ç½®ä¸ºBitstream
 
-        set guioptions-=m               "°ÑguiµÄ²Ëµ¥À¸È¥µô
-        set guioptions-=T               "È¥µô¹¤¾ßÀ¸
-        autocmd GUIEnter * simalt ~x    "Æô¶¯Ê±×î´ó»¯
+        set guioptions-=m               "æŠŠguiçš„èœå•æ å»æ‰
+        set guioptions-=T               "å»æ‰å·¥å…·æ 
+        autocmd GUIEnter * simalt ~x    "å¯åŠ¨æ—¶æœ€å¤§åŒ–
 
-        "ÏÂÃæµÄÉèÖÃ±ÜÃâvimÖĞÎÄ³öÏÖÂÒÂë
+        "ä¸‹é¢çš„è®¾ç½®é¿å…vimä¸­æ–‡å‡ºç°ä¹±ç 
         set encoding=utf-8
         set fileencodings=utf-8,chinese,latin-1
         if has("win32")
@@ -168,10 +168,10 @@
         else
         set fileencoding=utf-8
         endif
-        "½â¾ö²Ëµ¥ÂÒÂë
+        "è§£å†³èœå•ä¹±ç 
         source $VIMRUNTIME/delmenu.vim
         source $VIMRUNTIME/menu.vim
-        "½â¾öconsleÊä³öÂÒÂë
+        "è§£å†³consleè¾“å‡ºä¹±ç 
         language messages zh_CN.utf-8
     " }
 
@@ -200,7 +200,7 @@
     set nocompatible               " be iMproved
     filetype off                   " required!
 
-    " ´Ë´¦¹æ¶¨VundleµÄÂ·¾¶
+    " æ­¤å¤„è§„å®šVundleçš„è·¯å¾„
     if(g:iswindows==0)
         set rtp+=~/.vim/bundle/vundle/
         call vundle#rc()
@@ -210,13 +210,13 @@
     endif
 
     " original repos on github
-    " githubÉÏµÄÓÃ»§Ğ´µÄ²å¼ş£¬Ê¹ÓÃÕâÖÖÓÃ»§Ãû+repoÃû³ÆµÄ·½Ê½
+    " githubä¸Šçš„ç”¨æˆ·å†™çš„æ’ä»¶ï¼Œä½¿ç”¨è¿™ç§ç”¨æˆ·å+repoåç§°çš„æ–¹å¼
     Bundle 'gmarik/vundle'
-    " vimscriptsµÄrepoÊ¹ÓÃÏÂÃæµÄ¸ñÊ½£¬Ö±½ÓÊÇ²å¼şÃû³Æ
+    " vimscriptsçš„repoä½¿ç”¨ä¸‹é¢çš„æ ¼å¼ï¼Œç›´æ¥æ˜¯æ’ä»¶åç§°
     "Bundle 'taglist.vim'
 " }
 
-" ÑÕÉ«Ö÷Ìâ {
+" é¢œè‰²ä¸»é¢˜ {
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'vim-scripts/Lucius'
     Bundle 'tomasr/molokai'
@@ -226,7 +226,7 @@
         let g:solarized_termcolors=&t_Co
         let g:solarized_termtrans=1
     endif
-    colorscheme solarized     "darkburn     "ÉèÖÃÑÕÉ«Ö÷Ìâ
+    colorscheme solarized     "darkburn     "è®¾ç½®é¢œè‰²ä¸»é¢˜
     let g:solarized_termtrans=1
     let g:solarized_contrast="normal"
     let g:solarized_visibility="normal"
@@ -237,8 +237,8 @@
     "Bundle 'vim-scripts/STL-Syntax'
 "}
 
-" µ¼º½ {
-    "Ä¿Â¼µ¼º½
+" å¯¼èˆª {
+    "ç›®å½•å¯¼èˆª
     Bundle 'scrooloose/nerdtree'
     map <leader>w :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
@@ -258,16 +258,16 @@ nnoremap <silent> <F3> :Grep<CR>
 Bundle 'dkprice/vim-easygrep'
 "}
 
-"´´½¨ĞÂÎÄ¼şÊ±×Ô¶¯Ìí¼ÓÎÄ¼ş×¢ÊÍ
+"åˆ›å»ºæ–°æ–‡ä»¶æ—¶è‡ªåŠ¨æ·»åŠ æ–‡ä»¶æ³¨é‡Š
 autocmd BufNewFile *.[ch],*.hpp,*.cpp,*.py,*.sh exec ":call SetComment()"
 function! SetComment()
     call setline(1,"/*===============================================================")
     call append(line("."),   "*   Copyright (C) ".strftime("%Y")." All rights reserved.")
     call append(line(".")+1, "*   ")
-    call append(line(".")+2, "*   FileName£º".expand("%:t"))
-    call append(line(".")+3, "*   Author£ºWangYi")
-    call append(line(".")+4, "*   Date£º ".strftime("%Y-%m-%d"))
-    call append(line(".")+5, "*   Description£º")
+    call append(line(".")+2, "*   FileNameï¼š".expand("%:t"))
+    call append(line(".")+3, "*   Authorï¼šWangYi")
+    call append(line(".")+4, "*   Dateï¼š ".strftime("%Y-%m-%d"))
+    call append(line(".")+5, "*   Descriptionï¼š")
     call append(line(".")+6, "*")
     call append(line(".")+7, "================================================================*/")
 endfunction
@@ -278,7 +278,7 @@ endfunction
     "let g:miniBufExplMapWindowNavArrows = 1
     "let g:miniBufExplMapCTabSwitchBufs = 1
     "let g:miniBufExplModSelTarget = 1
-    ""½â¾öFileExplorer´°¿Ú±äĞ¡ÎÊÌâ
+    ""è§£å†³FileExplorerçª—å£å˜å°é—®é¢˜
     "let g:miniBufExplForceSyntaxEnable = 1
     "let g:miniBufExplorerMoreThanOne=2
 "    let g:miniBufExplCycleArround=1
@@ -288,7 +288,7 @@ endfunction
 Bundle 'kien/ctrlp.vim'
     let g:ctrlp_map = '<leader>p'
     let g:ctrlp_cmd = 'CtrlP'
-    "ÔÚÀúÊ·ÎÄ¼şÖĞÄ£ºı²éÕÒ
+    "åœ¨å†å²æ–‡ä»¶ä¸­æ¨¡ç³ŠæŸ¥æ‰¾
     map <leader>f :CtrlPMRU<CR>
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
     let g:ctrlp_custom_ignore = {
@@ -296,8 +296,8 @@ Bundle 'kien/ctrlp.vim'
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz)$',
         \ }
     "\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-    let g:ctrlp_working_path_mode='rw'  "ÉèÖÃ¹¤×÷Ä¿Â¼Îª×î½üµÄ°üÀ¨.git, .svnÄ¿Â¼µÄÄ¿Â¼
-    let g:ctrlp_root_markers=['.git']   "ÔÚÏîÄ¿¸ùÄ¿Â¼ÖĞ½¨Á¢Ò»¸ö.gitµÄ¿ÕÄ¿Â¼£¬ctrlp¼´´Ó¸ùÄ¿Â¼¿ªÊ¼ËÑË÷
+    let g:ctrlp_working_path_mode='rw'  "è®¾ç½®å·¥ä½œç›®å½•ä¸ºæœ€è¿‘çš„åŒ…æ‹¬.git, .svnç›®å½•çš„ç›®å½•
+    let g:ctrlp_root_markers=['.git']   "åœ¨é¡¹ç›®æ ¹ç›®å½•ä¸­å»ºç«‹ä¸€ä¸ª.gitçš„ç©ºç›®å½•ï¼Œctrlpå³ä»æ ¹ç›®å½•å¼€å§‹æœç´¢
     let g:ctrlp_match_window_bottom=1
     let g:ctrlp_max_height=15
     let g:ctrlp_match_window_reversed=0
@@ -307,14 +307,14 @@ Bundle 'kien/ctrlp.vim'
     let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
                                  \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 
-"ctrlpÀ©Õ¹£¬¿ÉÒÔËÑË÷µ±Ç°ÎÄ¼şµÄº¯Êı
+"ctrlpæ‰©å±•ï¼Œå¯ä»¥æœç´¢å½“å‰æ–‡ä»¶çš„å‡½æ•°
 Bundle 'tacahiroy/ctrlp-funky'
     let g:ctrlp_extensions = ['funky']
     nnoremap <Leader>ff :CtrlPFunky<Cr>
 "}
 
-" ÏÔÊ¾ÔöÇ¿ {
-"×´Ì¬À¸ÔöÇ¿Õ¹Ê¾
+" æ˜¾ç¤ºå¢å¼º {
+"çŠ¶æ€æ å¢å¼ºå±•ç¤º
 Bundle 'Lokaltog/vim-powerline'
 "if want to use fancy,need to add font patch -> git clone git://gist.github.com/1630581.git ~/.fonts/ttf-dejavu-powerline
 "let g:Powerline_symbols = 'fancy'
@@ -324,7 +324,7 @@ Bundle 'vim-scripts/Mark--Karkat'
 nmap <M-e> <leader>m
 nmap <esc>e <leader>m
 
-"À¨ºÅÏÔÊ¾ÔöÇ¿
+"æ‹¬å·æ˜¾ç¤ºå¢å¼º
 "Bundle 'kien/rainbow_parentheses.vim'
 "let g:rbpt_colorpairs = [
 "\ ['brown', 'RoyalBlue3'],
@@ -359,7 +359,7 @@ nmap <esc>e <leader>m
 "au Syntax * RainbowParenthesesLoadSquare
 "au Syntax * RainbowParenthesesLoadBraces
 
-"´úÂëÅÅ°æËõ½ø±êÊ¶
+"ä»£ç æ’ç‰ˆç¼©è¿›æ ‡è¯†
 Bundle 'Yggdroot/indentLine'
 let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 0
@@ -370,67 +370,67 @@ Bundle 'bronson/vim-trailing-whitespace'
 map <leader><space> :FixWhitespace<cr>
 " }
 
-" ¿ìËÙÒÆ¶¯ {
-"¸ü¸ßĞ§µÄÒÆ¶¯ ,, + w/fx
+" å¿«é€Ÿç§»åŠ¨ {
+"æ›´é«˜æ•ˆçš„ç§»åŠ¨ ,, + w/fx
 Bundle 'Lokaltog/vim-easymotion'
 map <leader>s <Plug>(easymotion-w)
 map <leader>b <Plug>(easymotion-b)
 Bundle 'vim-scripts/matchit.zip'
 " }
 
-" ×Ô¶¯²¹È« {
-"Æù½ñÎ»ÖÃÓÃµ½µÄ×îºÃµÄ×Ô¶¯VIM×Ô¶¯²¹È«²å¼ş, WindowsÏÂÊ¹ÓÃÓĞÎÊÌâ
+" è‡ªåŠ¨è¡¥å…¨ {
+"è¿„ä»Šä½ç½®ç”¨åˆ°çš„æœ€å¥½çš„è‡ªåŠ¨VIMè‡ªåŠ¨è¡¥å…¨æ’ä»¶, Windowsä¸‹ä½¿ç”¨æœ‰é—®é¢˜
  Bundle 'Valloric/YouCompleteMe'
-"youcompleteme  Ä¬ÈÏtab  s-tab ºÍ×Ô¶¯²¹È«³åÍ»
+"youcompleteme  é»˜è®¤tab  s-tab å’Œè‡ªåŠ¨è¡¥å…¨å†²çª
 let g:ycm_key_list_select_completion=['<c-n>']
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 
-" YouCompleteMe ¹¦ÄÜ
-" ²¹È«¹¦ÄÜÔÚ×¢ÊÍÖĞÍ¬ÑùÓĞĞ§
+" YouCompleteMe åŠŸèƒ½
+" è¡¥å…¨åŠŸèƒ½åœ¨æ³¨é‡Šä¸­åŒæ ·æœ‰æ•ˆ
 let g:ycm_complete_in_comments=1
-" ÔÊĞí vim ¼ÓÔØ .ycm_extra_conf.py ÎÄ¼ş£¬²»ÔÙÌáÊ¾
+" å…è®¸ vim åŠ è½½ .ycm_extra_conf.py æ–‡ä»¶ï¼Œä¸å†æç¤º
 let g:ycm_confirm_extra_conf=0
-" ¿ªÆô YCM »ùÓÚ±êÇ©ÒıÇæ
+" å¼€å¯ YCM åŸºäºæ ‡ç­¾å¼•æ“
 let g:ycm_collect_identifiers_from_tags_files=1
-" ÒıÈë C++ ±ê×¼¿âtags£¬Õâ¸öÃ»ÓĞÒ²Ã»¹ØÏµ£¬Ö»Òª.ycm_extra_conf.pyÎÄ¼şÖĞÖ¸¶¨ÁËÕıÈ·µÄ±ê×¼¿âÂ·¾¶
+" å¼•å…¥ C++ æ ‡å‡†åº“tagsï¼Œè¿™ä¸ªæ²¡æœ‰ä¹Ÿæ²¡å…³ç³»ï¼Œåªè¦.ycm_extra_conf.pyæ–‡ä»¶ä¸­æŒ‡å®šäº†æ­£ç¡®çš„æ ‡å‡†åº“è·¯å¾„
 set tags+=/data/misc/software/misc./vim/stdcpp.tags
-" YCM ¼¯³É OmniCppComplete ²¹È«ÒıÇæ£¬ÉèÖÃÆä¿ì½İ¼ü
+" YCM é›†æˆ OmniCppComplete è¡¥å…¨å¼•æ“ï¼Œè®¾ç½®å…¶å¿«æ·é”®
 inoremap <leader>; <C-x><C-o>
-" ²¹È«ÄÚÈİ²»ÒÔ·Ö¸î×Ó´°¿ÚĞÎÊ½³öÏÖ£¬Ö»ÏÔÊ¾²¹È«ÁĞ±í
+" è¡¥å…¨å†…å®¹ä¸ä»¥åˆ†å‰²å­çª—å£å½¢å¼å‡ºç°ï¼Œåªæ˜¾ç¤ºè¡¥å…¨åˆ—è¡¨
 set completeopt-=preview
-" ´ÓµÚÒ»¸ö¼üÈë×Ö·û¾Í¿ªÊ¼ÂŞÁĞÆ¥ÅäÏî
+" ä»ç¬¬ä¸€ä¸ªé”®å…¥å­—ç¬¦å°±å¼€å§‹ç½—åˆ—åŒ¹é…é¡¹
 let g:ycm_min_num_of_chars_for_completion=1
-" ½ûÖ¹»º´æÆ¥ÅäÏî£¬Ã¿´Î¶¼ÖØĞÂÉú³ÉÆ¥ÅäÏî
+" ç¦æ­¢ç¼“å­˜åŒ¹é…é¡¹ï¼Œæ¯æ¬¡éƒ½é‡æ–°ç”ŸæˆåŒ¹é…é¡¹
 let g:ycm_cache_omnifunc=0
-" Óï·¨¹Ø¼ü×Ö²¹È«
+" è¯­æ³•å…³é”®å­—è¡¥å…¨
 let g:ycm_seed_identifiers_with_syntax=1
-" ĞŞ¸Ä¶ÔCº¯ÊıµÄ²¹È«¿ì½İ¼ü£¬Ä¬ÈÏÊÇCTRL + space£¬ĞŞ¸ÄÎªALT + ;
+" ä¿®æ”¹å¯¹Cå‡½æ•°çš„è¡¥å…¨å¿«æ·é”®ï¼Œé»˜è®¤æ˜¯CTRL + spaceï¼Œä¿®æ”¹ä¸ºALT + ;
 let g:ycm_key_invoke_completion = '<M-;>'
-" ÉèÖÃ×ªµ½¶¨Òå´¦µÄ¿ì½İ¼üÎªALT + G£¬Õâ¸ö¹¦ÄÜ·Ç³£ÔŞ
+" è®¾ç½®è½¬åˆ°å®šä¹‰å¤„çš„å¿«æ·é”®ä¸ºALT + Gï¼Œè¿™ä¸ªåŠŸèƒ½éå¸¸èµ
 nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
 
 "}
 
-" ¿ìËÙ²åÈë´úÂëÆ¬¶Î {
+" å¿«é€Ÿæ’å…¥ä»£ç ç‰‡æ®µ {
 "Bundle 'vim-scripts/UltiSnips'
 "Bundle 'SirVer/ultisnips'
 "let g:UltiSnipsExpandTrigger = "<tab>"
 "let g:UltiSnipsJumpForwardTrigger = "<tab>"
-""¶¨Òå´æ·Å´úÂëÆ¬¶ÎµÄÎÄ¼ş¼Ğ .vim/snippetsÏÂ£¬Ê¹ÓÃ×Ô¶¨ÒåºÍÄ¬ÈÏµÄ£¬½«»áµÄµ½È«¾Ö£¬ÓĞ³åÍ»µÄ»áÌáÊ¾
+""å®šä¹‰å­˜æ”¾ä»£ç ç‰‡æ®µçš„æ–‡ä»¶å¤¹ .vim/snippetsä¸‹ï¼Œä½¿ç”¨è‡ªå®šä¹‰å’Œé»˜è®¤çš„ï¼Œå°†ä¼šçš„åˆ°å…¨å±€ï¼Œæœ‰å†²çªçš„ä¼šæç¤º
 "let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
 "}
 
-" ¿ìËÙ¼ÓÈëĞŞ¸Ä»·ÈÆ×Ö·û {
+" å¿«é€ŸåŠ å…¥ä¿®æ”¹ç¯ç»•å­—ç¬¦ {
 "Bundle 'tpope/vim-surround'
 ""for repeat -> enhance surround.vim, . to repeat command
 "Bundle 'tpope/vim-repeat'
 "}
 
-"×Ô¶¯²¹È«µ¥ÒıºÅ£¬Ë«ÒıºÅµÈ {
+"è‡ªåŠ¨è¡¥å…¨å•å¼•å·ï¼ŒåŒå¼•å·ç­‰ {
 Bundle 'Raimondi/delimitMate'
-" for python docstring ",ÓÅ»¯ÊäÈë
+" for python docstring ",ä¼˜åŒ–è¾“å…¥
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 " }
 
@@ -458,9 +458,9 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 "let g:multi_cursor_quit_key='<Esc>'
 " }
 
-" Óï·¨¼ì²é {
-" ±à¼­Ê±×Ô¶¯Óï·¨¼ì²é±êºì, vim-flake8Ä¿Ç°»¹²»Ö§³Ö,ËùÒÔ¶à×°Ò»¸ö
-" Ê¹ÓÃpyflakes,ËÙ¶È±Èpylint¿ì
+" è¯­æ³•æ£€æŸ¥ {
+" ç¼–è¾‘æ—¶è‡ªåŠ¨è¯­æ³•æ£€æŸ¥æ ‡çº¢, vim-flake8ç›®å‰è¿˜ä¸æ”¯æŒ,æ‰€ä»¥å¤šè£…ä¸€ä¸ª
+" ä½¿ç”¨pyflakes,é€Ÿåº¦æ¯”pylintå¿«
 Bundle 'scrooloose/syntastic'
 let g:syntastic_error_symbol='>>'
 let g:syntastic_warning_symbol='>'
@@ -470,7 +470,7 @@ let g:syntastic_enable_highlighting = 0
 let g:syntastic_python_checkers=['pyflakes']
 highlight SyntasticErrorSign guifg=white guibg=black
 
-" python fly check, ÃÖ²¹syntasticÖ»ÄÜ´ò¿ªºÍ±£´æ²Å¼ì²éÓï·¨µÄ²»×ã
+" python fly check, å¼¥è¡¥syntasticåªèƒ½æ‰“å¼€å’Œä¿å­˜æ‰æ£€æŸ¥è¯­æ³•çš„ä¸è¶³
 Bundle 'kevinw/pyflakes-vim'
 let g:pyflakes_use_quickfix = 0
 " }
@@ -482,7 +482,7 @@ nmap <F4> :cn<cr>
 nmap <F3> :cp<cr>
 "}"
 
-" ¾ßÌåÓïÑÔÓï·¨¸ßÁÁ {
+" å…·ä½“è¯­è¨€è¯­æ³•é«˜äº® {
 " for python.vim syntax highlight
 Bundle 'hdima/python-syntax'
 let python_highlight_all = 1
@@ -510,7 +510,7 @@ let python_highlight_all = 1
 "Bundle 'vim-scripts/TaskList.vim'
 "map <leader>td <Plug>TaskList
 
-"edit history, ¿ÉÒÔ²é¿´»Øµ½Ä³¸öÀúÊ·×´Ì¬
+"edit history, å¯ä»¥æŸ¥çœ‹å›åˆ°æŸä¸ªå†å²çŠ¶æ€
 "Bundle 'sjl/gundo.vim'
 "nnoremap <leader>h :GundoToggle<CR>
 " }
@@ -534,37 +534,64 @@ Bundle 'scrooloose/nerdcommenter'
 let NERDShutUp=1
 " }
 
+" cscope {
+Bundle 'vim-scripts/cscope.vim'
+set csprg=/usr/bin/cscope
+set csto=0
+set cst
+set nocsverb
+cs add cscope.out
+"----æŸ¥æ‰¾å‡½æ•°ã€å®ã€æšä¸¾ç­‰å®šä¹‰çš„ä½ç½®: alt+g
+"nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <esc>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"----æŸ¥æ‰¾å‡½æ•°å®šä¹‰:  alt+d.ä½¿ç”¨globalï¼Œæ”¯æŒtabè¡¥å…¨
+"nmap <M-d> :cs f g 
+"nmap <esc>d :cs f g 
+"----æŸ¥æ‰¾è°ƒç”¨æœ¬å‡½æ•°çš„å‡½æ•°:  alt+w
+nmap <M-w> :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <esc>w :cs find c <C-R>=expand("<cword>")<CR><CR>
+""æŸ¥æ‰¾Cè¯­è¨€ç¬¦å·ï¼Œå³æŸ¥æ‰¾å‡½æ•°åã€å®ã€æšä¸¾å€¼ç­‰å‡ºç°çš„åœ°æ–¹
+"nmap <M-f> :cs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <esc>f :cs find s <C-R>=expand("<cword>")<CR><CR>
+""æŸ¥æ‰¾egrepæ¨¡å¼ï¼Œç›¸å½“äºegrepåŠŸèƒ½ï¼Œä½†æŸ¥æ‰¾é€Ÿåº¦å¿«å¤šäº†
+"nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+""----æŸ¥æ‰¾æŒ‡å®šçš„å­—ç¬¦ä¸²:  alt+f
+"nmap <C-@>s :cs find t <C-R>=expand("<cword>")<CR><CR>
+""æŸ¥æ‰¾å¹¶æ‰“å¼€æ–‡ä»¶ï¼Œç±»ä¼¼vimçš„findåŠŸèƒ½
+"nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+""æŸ¥æ‰¾åŒ…å«æœ¬æ–‡ä»¶çš„æ–‡ä»¶
+"nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+""æŸ¥æ‰¾æœ¬å‡½æ•°è°ƒç”¨çš„å‡½æ•°
+"nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" }
+
 " gtags {
 Bundle 'vim-scripts/gtags.vim'
 " }
 
 " GNU Global {
-"----²éÕÒº¯Êı¡¢ºê¡¢Ã¶¾ÙµÈ¶¨ÒåµÄÎ»ÖÃ: alt+g
+"----æŸ¥æ‰¾å‡½æ•°ã€å®ã€æšä¸¾ç­‰å®šä¹‰çš„ä½ç½®: alt+g
 nmap <M-g> :Gtags -a <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>g :Gtags -a <C-R>=expand("<cword>")<CR><CR>
-"----²éÕÒ·ûºÅ±í£ºalt+d: -iÎª²»Çø·Ö´óĞ¡Ğ´£»-aÎªÏÔÊ¾¾ø¶ÔÂ·¾¶
+"----æŸ¥æ‰¾ç¬¦å·è¡¨ï¼šalt+d: -iä¸ºä¸åŒºåˆ†å¤§å°å†™ï¼›-aä¸ºæ˜¾ç¤ºç»å¯¹è·¯å¾„
 nmap <M-d> :Gtags -ia 
 nmap <esc>d :Gtags -ia 
-"-----²éÕÒgrep£ºalt+w
+"-----æŸ¥æ‰¾grepï¼šalt+w
 "nmap <M-w> :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
 "nmap <esc>w :Gtags -sa <C-R>=expand("<cword>")<CR><CR>
-nmap <M-w> :Gtags -ga
-nmap <esc>w :Gtags -ga
-"----²éÕÒµ÷ÓÃ±¾º¯ÊıµÄº¯Êı:  alt+s
+"nmap <M-w> :Gtags -ga
+"nmap <esc>w :Gtags -ga
+"----æŸ¥æ‰¾è°ƒç”¨æœ¬å‡½æ•°çš„å‡½æ•°:  alt+s
 nmap <M-s> :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
-"²éÕÒCÓïÑÔ·ûºÅ£¬¼´²éÕÒº¯ÊıÃû¡¢ºê¡¢Ã¶¾ÙÖµµÈ³öÏÖµÄµØ·½
+"æŸ¥æ‰¾Cè¯­è¨€ç¬¦å·ï¼Œå³æŸ¥æ‰¾å‡½æ•°åã€å®ã€æšä¸¾å€¼ç­‰å‡ºç°çš„åœ°æ–¹
 nmap <M-f> :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>f :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
 
-"²éÕÒtag£¬ÓÃctrlPÀ´ÊµÏÖ£¬Ö§³ÖÄ£ºı²éÕÒ
-"nmap <M-d> :CtrlPTag<cr>
-"nmap <esc>d :CtrlPTag<cr>
-
-"Éú³ÉcscopeÊı¾İ¿â¡¢ctags
+"ç”Ÿæˆglobalã€cscopeæ•°æ®åº“
 map <C-F12> :call Do_GenCsTag()<CR>
 "map <F12> :call UpdateTags()<CR>
-"±£´æÎÄ¼şºó×Ô¶¯¸üĞÂGNU Global
+"ä¿å­˜æ–‡ä»¶åè‡ªåŠ¨æ›´æ–°GNU Global
 au BufWritePost *.cpp call UpdateTags(expand('<afile>'))
 au BufWritePost *.c call UpdateTags(expand('<afile>'))
 au BufWritePost *.h call UpdateTags(expand('<afile>'))
@@ -575,11 +602,13 @@ function! Do_GenCsTag()
     if(executable('gtags'))
         if(g:iswindows!=1)
             silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > gtags.files"
+            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
         else
             silent! execute "!gentags.bat"
         endif
         silent! execute "!gtags"
         silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        silent! execute "!cscope -bkq -i cscope.files"
     endif
 endfunction
 
@@ -591,12 +620,12 @@ function! UpdateTags(f)
 if(g:iswindows!=1) 
     exe 'silent !cd ' . dir . ' && global -u &> /dev/null &'
 else 
-exe 'silent !cd ' . dir . ' && global -u' 
+    exe 'silent !cd ' . dir . ' && global -u' 
 endif 
 endfunction
 " }
 
-" ±êÇ©µ¼º½ {
+" æ ‡ç­¾å¯¼èˆª {
 Bundle 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
@@ -604,7 +633,7 @@ let g:tagbar_left = 1
 let g:tagbar_sort = 0
 " }
 
-" Alternate Í·ÎÄ¼şÇĞ»» {
+" Alternate å¤´æ–‡ä»¶åˆ‡æ¢ {
 Bundle 'vim-scripts/a.vim'
 " }
 
@@ -613,12 +642,12 @@ Bundle 'vim-scripts/a.vim'
 "let OmniCpp_NamespaceSearch = 1
 "let OmniCpp_GlobalScopeSearch = 1
 "let OmniCpp_ShowAccess = 1
-"let OmniCpp_ShowPrototypeInAbbr = 1 " ÏÔÊ¾º¯Êı²ÎÊıÁĞ±í
-"let OmniCpp_MayCompleteDot = 1   " ÊäÈë .  ºó×Ô¶¯²¹È«
-"let OmniCpp_MayCompleteArrow = 1 " ÊäÈë -> ºó×Ô¶¯²¹È«
-"let OmniCpp_MayCompleteScope = 1 " ÊäÈë :: ºó×Ô¶¯²¹È«
+"let OmniCpp_ShowPrototypeInAbbr = 1 " æ˜¾ç¤ºå‡½æ•°å‚æ•°åˆ—è¡¨
+"let OmniCpp_MayCompleteDot = 1   " è¾“å…¥ .  åè‡ªåŠ¨è¡¥å…¨
+"let OmniCpp_MayCompleteArrow = 1 " è¾“å…¥ -> åè‡ªåŠ¨è¡¥å…¨
+"let OmniCpp_MayCompleteScope = 1 " è¾“å…¥ :: åè‡ªåŠ¨è¡¥å…¨
 "let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-"" ×Ô¶¯¹Ø±Õ²¹È«´°¿Ú
+"" è‡ªåŠ¨å…³é—­è¡¥å…¨çª—å£
 "au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "set completeopt=menuone,menu,longest
 " }
@@ -658,18 +687,18 @@ Bundle 'vim-scripts/a.vim'
 "endfunction
 "let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc'
 
-""Ó³ÉäLookupFileÎª,lk-----ËÑË÷ÎÄ¼ş
+""æ˜ å°„LookupFileä¸º,lk-----æœç´¢æ–‡ä»¶
 "nmap <silent> <leader>lk :LUTags<cr>
-""Ó³ÉäLUBufsÎª,ll------ËÑË÷Buffer
+""æ˜ å°„LUBufsä¸º,ll------æœç´¢Buffer
 "nmap <silent> <leader>ll :LUBufs<cr>
-""Ó³ÉäLUWalkÎª,lw-----ËÑË÷Ä¿Â¼
+""æ˜ å°„LUWalkä¸º,lw-----æœç´¢ç›®å½•
 "nmap <silent> <leader>lw :LUWalk<cr>
 " }
 
 " netrw setting {
 "Bundle 'vim-scripts/netrw.vim'
 "let g:netrw_winsize = 30
-"" ,fe´ò¿ªÎÄ¼şä¯ÀÀÆ÷
+"" ,feæ‰“å¼€æ–‡ä»¶æµè§ˆå™¨
 "nmap <silent> <leader>fe :Sexplore!<cr>
 " }
 

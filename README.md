@@ -24,12 +24,12 @@
     从GNU官网http://www.gnu.org/software/global/download.html下载压缩包，然后将bin下的文件拷贝到gvim所在目录（以Windows为例）。
     映射快捷键->->->->
         Ctrl+F12即可生成tags,并自动添加数据库
-        F12自动更新数据库
+        F12自动更新数据库。保存文件以后也会自动更新。
         Alt+g                   "转到函数定义
         Alt+d                   "打开符号表，支持POSIX正则；按Tab自动补全；
         Alt+s                   "查找引用
         Alt+f                   "搜索字符串
-        Alt+w                   “如果Alt+g找不到定义，用这个
+        Alt+w                   "用cscope查找符号引用。因为global显示不出具体函数
 ### 3、QuickFix窗口
     ,sf     "快速打开QuickFix窗口
     f3/F4   "向前/前后切换
@@ -52,8 +52,12 @@
     ,cA    在当前行尾添加注释符，并进入Insert模式
     ,cu    取消注释
 
-### 8、sessionman
-    将session保存、恢复
+### 8、Easy-grep
+    ,vv    搜索当前光标下的单词
+    ,vV    全词匹配搜索
+    ,va    与,vv类似，将结果append到上次搜索结果之后
+    ,vA    与,vV类似，将结果append到上次搜索结果之后
+    ,vr    替换
 ### 9、 nerdtree
     ,w  打开 关闭树形目录结构
     在nerdtree窗口常用操作：(小写当前，大写root)
@@ -83,6 +87,7 @@
 
 ### 13、indentLine
     可以显示对齐的插件，对于喜欢代码整洁的人很有用。
+    :IndentLinesToggle      "打开/关闭显示对齐
 
 
 三、vim使用
