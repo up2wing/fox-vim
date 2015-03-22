@@ -602,7 +602,8 @@ function! Do_GenCsTag()
     if(executable('gtags'))
         if(g:iswindows!=1)
             silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > gtags.files"
-            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+            "生成cscope数据库时，find要用绝对路径，否则跳转时找不到文件
+            "silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
         else
             silent! execute "!gentags.bat"
         endif
