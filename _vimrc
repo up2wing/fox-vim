@@ -310,7 +310,7 @@ Bundle 'kien/ctrlp.vim'
 "ctrlp扩展，可以搜索当前文件的函数
 Bundle 'tacahiroy/ctrlp-funky'
     let g:ctrlp_extensions = ['funky']
-    nnoremap <Leader>ff :CtrlPFunky<Cr>
+    nnoremap <Leader>ss :CtrlPFunky<Cr>
 "}
 
 " 显示增强 {
