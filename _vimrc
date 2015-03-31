@@ -219,7 +219,7 @@
 " 颜色主题 {
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'vim-scripts/Lucius'
-    Bundle 'tomasr/molokai'
+    "Bundle 'tomasr/molokai'
     set t_Co=256
     set background=dark
     if !has('gui_running')
@@ -239,14 +239,14 @@
 
 " 导航 {
     "目录导航
-    Bundle 'scrooloose/nerdtree'
-    map <leader>w :NERDTreeToggle<CR>
-    let NERDTreeHighlightCursorline=1
-    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-    let g:netrw_home='~/bak'
-    let NERDTreeWinPos=1
-    "close vim if the only window left open is a NERDTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+    "Bundle 'scrooloose/nerdtree'
+    "map <leader>w :NERDTreeToggle<CR>
+    "let NERDTreeHighlightCursorline=1
+    "let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+    "let g:netrw_home='~/bak'
+    "let NERDTreeWinPos=1
+    ""close vim if the only window left open is a NERDTree
+    "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 "}
 
 " grep{
@@ -461,18 +461,18 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " 语法检查 {
 " 编辑时自动语法检查标红, vim-flake8目前还不支持,所以多装一个
 " 使用pyflakes,速度比pylint快
-Bundle 'scrooloose/syntastic'
-let g:syntastic_error_symbol='>>'
-let g:syntastic_warning_symbol='>'
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_highlighting = 0
-"let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
-let g:syntastic_python_checkers=['pyflakes']
-highlight SyntasticErrorSign guifg=white guibg=black
+"Bundle 'scrooloose/syntastic'
+"let g:syntastic_error_symbol='>>'
+"let g:syntastic_warning_symbol='>'
+"let g:syntastic_check_on_open=1
+"let g:syntastic_enable_highlighting = 0
+""let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
+"let g:syntastic_python_checkers=['pyflakes']
+"highlight SyntasticErrorSign guifg=white guibg=black
 
 " python fly check, 弥补syntastic只能打开和保存才检查语法的不足
-Bundle 'kevinw/pyflakes-vim'
-let g:pyflakes_use_quickfix = 0
+"Bundle 'kevinw/pyflakes-vim'
+"let g:pyflakes_use_quickfix = 0
 " }
 
 "QuickFix Toggle {
@@ -540,7 +540,10 @@ set csprg=/usr/bin/cscope
 set csto=0
 set cst
 set nocsverb
-cs add cscope.out
+"cs add cscope.out
+Bundle 'brookhong/cscope.vim'
+nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
 "----查找函数、宏、枚举等定义的位置: alt+g
 "nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
 "nmap <esc>g :cs find g <C-R>=expand("<cword>")<CR><CR>
