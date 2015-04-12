@@ -540,17 +540,13 @@ set csprg=/usr/bin/cscope
 set csto=0
 set cst
 set nocsverb
-"cs add cscope.out
-Bundle 'brookhong/cscope.vim'
-nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
+cs add cscope.out
 "----查找函数、宏、枚举等定义的位置: alt+g
 "nmap <M-g> :cs find g <C-R>=expand("<cword>")<CR><CR>
 "nmap <esc>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 "----查找函数定义:  alt+d.使用global，支持tab补全
 "nmap <M-d> :cs f g 
 "nmap <esc>d :cs f g 
-"----查找调用本函数的函数:  alt+w
 nmap <M-w> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>w :cs find c <C-R>=expand("<cword>")<CR><CR>
 ""查找C语言符号，即查找函数名、宏、枚举值等出现的地方
@@ -593,7 +589,7 @@ nmap <esc>f :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
 
 "生成global、cscope数据库
 map <C-F12> :call Do_GenCsTag()<CR>
-"map <F12> :call UpdateTags()<CR>
+map <F12> :call UpdateCscopeDb()<CR>
 "保存文件后自动更新GNU Global
 au BufWritePost *.cpp call UpdateTags(expand('<afile>'))
 au BufWritePost *.c call UpdateTags(expand('<afile>'))
@@ -616,13 +612,15 @@ function! Do_GenCsTag()
     endif
 endfunction
 
-"function! UpdateTags()
-    "silent! execute "!global -u"
-"endfunction
+function! UpdateCscopeDb()
+    silent! execute ":cs reset"
+endfunction
+
 function! UpdateTags(f)
     let dir = fnamemodify(a:f, ':p:h')
 if(g:iswindows!=1) 
     exe 'silent !cd ' . dir . ' && global -u &> /dev/null &'
+    silent! execute ":cs reset"
 else 
     exe 'silent !cd ' . dir . ' && global -u' 
 endif 
