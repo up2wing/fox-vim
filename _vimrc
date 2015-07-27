@@ -304,6 +304,7 @@ Bundle 'kien/ctrlp.vim'
     let g:ctrlp_mruf_max=5000
     let g:ctrlp_follow_symlinks=1
     let g:ctrlp_regexp=1
+    let g:ctrlp_max_files=0     "项目中文件较多时可以搜索到所有文件
     let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
                                  \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
 
