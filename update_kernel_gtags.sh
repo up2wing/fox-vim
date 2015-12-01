@@ -28,8 +28,10 @@ done
 gtags_exc=${gtags_exc%"-o "}
 cscope_exc=${cscope_exc%"-o "}
 
-find . \( $gtags_exc \) -prune -o -print -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' -o -name '*.S' > gtags.files
-find `pwd` \( $cscope_exc \) -prune -o -print -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files
+find . \( $gtags_exc \) -prune -type f -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' -o -name '*.S' > gtags.files
+find ./include -type f -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' -o -name '*.S' >> gtags.files
+find `pwd` \( $cscope_exc \) -prune -type f -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files
+find `pwd`/include -type f -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' -o -name '*.S' >> cscope.files
 gtags
 cscope -bkq -i cscope.files
 

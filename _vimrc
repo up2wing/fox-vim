@@ -256,6 +256,7 @@ nnoremap <silent> <F3> :Grep<CR>
 
 " Easygrep{
 Bundle 'dkprice/vim-easygrep'
+let g:EasyGrepFilesToExclude=".svn,.git,tags,cscope.*,*.o,*.swp,*.out,c.vim"
 "}
 
 "创建新文件时自动添加文件注释
@@ -585,10 +586,10 @@ nmap <esc>d :Gtags -ia
 nmap <M-s> :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
 nmap <esc>s :Gtags -rxa <C-R>=expand("<cword>")<CR><CR>
 "查找C语言符号，即查找函数名、宏、枚举值等出现的地方
-"nmap <M-f> :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
-"nmap <esc>f :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
-nmap <M-f> :Grep -w <C-R>=expand("<cword>")<CR><CR>
-nmap <esc>f :Grep -w <C-R>=expand("<cword>")<CR><CR>
+nmap <M-f> :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
+nmap <esc>f :Gtags -ga <C-R>=expand("<cword>")<CR><CR>
+"nmap <M-f> :Grep -w <C-R>=expand("<cword>")<CR><CR>
+"nmap <esc>f :Grep -w <C-R>=expand("<cword>")<CR><CR>
 
 "生成global、cscope数据库
 map <C-F12> :call Do_GenCsTag()<CR>
