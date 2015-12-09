@@ -60,6 +60,7 @@
         nmap le ^
         nmap lt %
         nmap lf *
+        nmap ld #
         " 设置快捷键将选中文本块复制至系统剪贴板
         vnoremap <Leader>y "+y
         " 设置快捷键将系统剪贴板内容粘贴至 vim
@@ -239,14 +240,14 @@
 
 " 导航 {
     "目录导航
-    "Bundle 'scrooloose/nerdtree'
-    "map <leader>w :NERDTreeToggle<CR>
-    "let NERDTreeHighlightCursorline=1
-    "let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-    "let g:netrw_home='~/bak'
-    "let NERDTreeWinPos=1
-    ""close vim if the only window left open is a NERDTree
-    "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+    Bundle 'scrooloose/nerdtree'
+    map <leader>w :NERDTreeToggle<CR>
+    let NERDTreeHighlightCursorline=1
+    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+    let g:netrw_home='~/bak'
+    let NERDTreeWinPos=1
+    "close vim if the only window left open is a NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 "}
 
 " grep{
